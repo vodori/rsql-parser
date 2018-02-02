@@ -4,6 +4,7 @@
   "description": "A javascript library for parsing rsql expressions into predicates.",
   "main": "index.js",
   "scripts": {
+    "build": "./regenerate.sh",
     "test": "mocha"
   },
   "repository": {
