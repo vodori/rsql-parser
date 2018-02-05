@@ -30,16 +30,16 @@ PredicateParser.prototype.parse = function (s) {
             switch (ctx.op.type) {
                 case Lexer.RSQLLexer.AND_OPERATOR:
                     return (function () {
-                        const parseLeft = this.visitStatement(ctx.left);
-                        const parseRight = this.visitStatement(ctx.right);
+                        const parseLeft = this.visit(ctx.left);
+                        const parseRight = this.visit(ctx.right);
                         return (x) => {
                             return parseLeft(x) && parseRight(x);
                         };
                     }.bind(this))();
                 case Lexer.RSQLLexer.OR_OPERATOR:
                     return (function () {
-                        const parseLeft = this.visitStatement(ctx.left);
-                        const parseRight = this.visitStatement(ctx.right);
+                        const parseLeft = this.visit(ctx.left);
+                        const parseRight = this.visit(ctx.right);
                         return (x) => {
                             return parseLeft(x) || parseRight(x);
                         };
@@ -48,23 +48,25 @@ PredicateParser.prototype.parse = function (s) {
                     throw new Error("Unknown operator!");
             }
         } else if (!!ctx.wrapped) {
-            return this.visitStatement(ctx.wrapped);
+            return this.visit(ctx.wrapped);
         } else if (!!ctx.node) {
-            return this.visitComparison(ctx.node);
+            return this.visit(ctx.node);
         } else {
             throw new Error("I don't recognize this node.")
         }
     };
 
     Visits.prototype.visitComparison = function (ctx) {
+        // existence
         if (ctx.op.type === Lexer.RSQLLexer.EX) {
             const lookup = {"true": true, "false": false};
             const shouldExist = lookup[ctx.bool.getText()];
             return x => {
                 if (shouldExist) {
-                    return !!x[ctx.key.text];
+                    const value = x[ctx.key.text];
+                    return value !== null && value !== undefined;
                 } else {
-                    return !x[ctx.key.text];
+                    return value === null || value === undefined;
                 }
             };
         }
