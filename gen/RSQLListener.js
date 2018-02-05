@@ -29,12 +29,12 @@ RSQLListener.prototype.exitComparison = function(ctx) {
 };
 
 
-// Enter a parse tree produced by RSQLParser#val.
-RSQLListener.prototype.enterVal = function(ctx) {
+// Enter a parse tree produced by RSQLParser#string_value.
+RSQLListener.prototype.enterString_value = function(ctx) {
 };
 
-// Exit a parse tree produced by RSQLParser#val.
-RSQLListener.prototype.exitVal = function(ctx) {
+// Exit a parse tree produced by RSQLParser#string_value.
+RSQLListener.prototype.exitString_value = function(ctx) {
 };
 
 

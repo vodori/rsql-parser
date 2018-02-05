@@ -1,25 +1,31 @@
-var assert = require('assert');
-var antlr4 = require('antlr4');
-var Lexer = require('../gen/RSQLLexer');
-var Parser = require('../gen/RSQLParser');
-var Visitor = require('../gen/RSQLVisitor');
-
+const expect = require('chai').expect;
+const Parser = require('../index').PredicateParser;
 
 describe('Parsing', function () {
 
-    describe('basic equality expression', function () {
-        it('should parse into a comparison node.', function () {
+    const parser = new Parser();
 
-            var expression = "things=='stuff'";
-            var characters = new antlr4.InputStream(expression);
-            var lexer = new Lexer.RSQLLexer(characters);
-            var tokens = new antlr4.CommonTokenStream(lexer);
-            var parser = new Parser.RSQLParser(tokens);
 
-            parser.buildParseTrees = true;
-            var tree = parser.statement();
-            console.log(tree);
+    describe('existence', function () {
+        it('true on truthy values', function () {
+            const expression = "things=ex=true";
+            const predicate = parser.parse(expression);
+            expect(predicate({things: "stuff"})).to.be.true;
+            expect(predicate({things: 1})).to.be.true;
+        });
 
+        it('true on falsey value', function () {
+            const expression = "things=ex=true";
+            const predicate = parser.parse(expression);
+            expect(predicate({things: false})).to.be.true;
+            expect(predicate({things: 0})).to.be.true;
+        });
+
+        it('false on null or undefined', function () {
+            const expression = "things=ex=true";
+            const predicate = parser.parse(expression);
+            expect(predicate({things: null})).to.be.false;
+            expect(predicate({})).to.be.false;
         });
     });
 

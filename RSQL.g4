@@ -11,9 +11,10 @@ statement
     ;
 
 comparison
-    : key=IDENTIFIER op=( EQ | NE | GT | GTE | LT | LTE ) value=val
-    | key=IDENTIFIER op=( IN | NIN ) value=val
-    | key=IDENTIFIER op=EX value=val
+    : key=IDENTIFIER op=( EQ | NE | GT | GTE | LT | LTE ) single=single_value
+    | key=IDENTIFIER op=( IN | NIN ) multi=multi_value
+    | key=IDENTIFIER op=EX bool=boolean_value
+    | key=IDENTIFIER op=RE regex=string_value
     ;
 
 TRUE: 'true';
@@ -38,18 +39,16 @@ IDENTIFIER
  : [a-zA-Z_] [a-zA-Z_0-9]*
  ;
 
-val
-    : single_value
-    | multi_value
+string_value
+    : STRING_LITERAL
     ;
 
 boolean_value
-    : TRUE
-    | FALSE
+    : BOOLEAN_LITERAL
     ;
 
 single_value
-    : boolean_value
+    : BOOLEAN_LITERAL
     | STRING_LITERAL
     | NUMERIC_LITERAL
     ;
@@ -67,10 +66,17 @@ NUMERIC_LITERAL
 STRING_LITERAL
     : '\'' ( STRING_ESCAPE_SEQ | ~[\\\r\n'] )* '\''
     | '"' ( STRING_ESCAPE_SEQ | ~[\\\r\n"] )* '"'
+    | NOESCAPE+
+    ;
+
+BOOLEAN_LITERAL
+    : TRUE
+    | FALSE
     ;
 
 STRING_ESCAPE_SEQ
     : '\\' .
     ;
 
+fragment NOESCAPE : [a-zA-Z0-9];
 fragment DIGIT : [0-9];

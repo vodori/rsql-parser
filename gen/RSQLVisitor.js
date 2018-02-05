@@ -24,8 +24,8 @@ RSQLVisitor.prototype.visitComparison = function(ctx) {
 };
 
 
-// Visit a parse tree produced by RSQLParser#val.
-RSQLVisitor.prototype.visitVal = function(ctx) {
+// Visit a parse tree produced by RSQLParser#string_value.
+RSQLVisitor.prototype.visitString_value = function(ctx) {
   return this.visitChildren(ctx);
 };
 
