@@ -3,6 +3,43 @@ const Lexer = require('./gen/RSQLLexer');
 const Parser = require('./gen/RSQLParser');
 const Visitor = require('./gen/RSQLVisitor');
 
+const pull = function (obj, path) {
+    if (path.length) {
+        const segment = path[0];
+        const value = obj[segment];
+        if (path.length === 1) {
+            return value;
+        } else {
+            return pull(value, path.slice(1));
+        }
+    } else {
+        return null;
+    }
+};
+
+
+const pullPath = function (obj, path) {
+    return pull(obj, (path || "").split(".").filter(segment => !!segment));
+};
+
+function trim (s, c) {
+    if (c === "]") c = "\\]";
+    if (c === "\\") c = "\\\\";
+    return s.replace(new RegExp(
+        "^[" + c + "]+|[" + c + "]+$", "g"
+    ), "");
+}
+
+const trimQuotes = function(val) {
+    if(val.startsWith('"') && val.endsWith('"')) {
+        return trim(val, '"');
+    } else if (val.startsWith("'") && val.endsWith("'")) {
+        return trim(val, "'");
+    } else {
+        return val;
+    }
+};
+
 const PredicateParser = function () {
 
 };
@@ -57,20 +94,85 @@ PredicateParser.prototype.parse = function (s) {
     };
 
     Visits.prototype.visitComparison = function (ctx) {
-        // existence
-        if (ctx.op.type === Lexer.RSQLLexer.EX) {
-            const lookup = {"true": true, "false": false};
-            const shouldExist = lookup[ctx.bool.getText()];
-            return x => {
-                if (shouldExist) {
-                    const value = x[ctx.key.text];
-                    return value !== null && value !== undefined;
-                } else {
-                    return value === null || value === undefined;
-                }
-            };
+        const key = this.visitField(ctx.target);
+        let coerced;
+        if (ctx.single) {
+            coerced = this.visitSingle_value(ctx.single)[0];
+        } else if (ctx.sub) {
+            coerced = this.visitStatement(ctx.sub);
+        } else if (ctx.multi) {
+            coerced = this.visitMulti_value(ctx.multi);
+        } else if (ctx.bool) {
+            coerced = this.visitBoolean_value(ctx.bool);
+        } else if (ctx.regex) {
+            coerced = this.visitString_value(ctx.regex);
         }
 
+        return x => {
+            const value = pullPath(x, key.key);
+
+            switch (ctx.op.type) {
+                case Lexer.RSQLLexer.EQ:
+                    return value === coerced;
+                case Lexer.RSQLLexer.NE:
+                    return value !== coerced;
+                case Lexer.RSQLLexer.GT:
+                    return value > coerced;
+                case Lexer.RSQLLexer.GTE:
+                    return value >= coerced;
+                case Lexer.RSQLLexer.LT:
+                    return value < coerced;
+                case Lexer.RSQLLexer.LTE:
+                    return value <= coerced;
+                case Lexer.RSQLLexer.IN:
+                    return false;
+                case Lexer.RSQLLexer.NIN:
+                    return false;
+                case Lexer.RSQLLexer.EX:
+                    if (coerced) {
+                        return value !== null && value !== undefined;
+                    } else {
+                        return value === null || value === undefined;
+                    }
+                case Lexer.RSQLLexer.RE:
+                    return value !== null && value !== undefined && coerced.test(value.toString());
+                case Lexer.RSQLLexer.SUB:
+                    return false;
+                default:
+                    throw new Error("Unknown operator.");
+            }
+        };
+    };
+
+
+    Visits.prototype.visitString_value = function(ctx) {
+        return trimQuotes(ctx.getText());
+    };
+
+    Visits.prototype.visitNumber_value = function(ctx) {
+        const asText = ctx.getText();
+        const trimmed = trimQuotes(asText);
+        if(/\./.test(trimmed)) {
+            return parseFloat(trimmed);
+        } else {
+            return parseInt(trimmed);
+        }
+    };
+
+    Visits.prototype.visitBoolean_value = function (ctx) {
+        const asText = ctx.getText();
+        if(/true/.test(asText)) {
+            return true;
+        } else if(/false/.test(asText)) {
+            return false;
+        }
+    };
+
+    Visits.prototype.visitField = function (ctx) {
+        const field = {};
+        field.key = ctx.key.text;
+        field.hint = ctx.hint ? ctx.hint.text : null;
+        return field;
     };
 
     return new Visits().visitStatement(tree);

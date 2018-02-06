@@ -6,28 +6,50 @@ describe('Parsing', function () {
     const parser = new Parser();
 
 
-    describe('existence', function () {
+    const match = function (rsql, data) {
+        const predicate = parser.parse(rsql);
+        expect(predicate(data)).to.be.true;
+    };
+
+    const noMatch = function (rsql, data) {
+        const predicate = parser.parse(rsql);
+        expect(predicate(data)).to.be.false;
+    };
+
+    describe('=ex=', function () {
         it('true on truthy values', function () {
-            const expression = "things=ex=true";
-            const predicate = parser.parse(expression);
-            expect(predicate({things: "stuff"})).to.be.true;
-            expect(predicate({things: 1})).to.be.true;
+            match("things=ex=true", {things: true});
+            match("things=ex=true", {things: "stuff"});
+            match("things=ex=true", {things: 1});
+            noMatch("things=ex=false", {things: true});
+            noMatch("things=ex=false", {things: "stuff"});
+            noMatch("things=ex=false", {things: 1});
         });
 
         it('true on falsey value', function () {
-            const expression = "things=ex=true";
-            const predicate = parser.parse(expression);
-            expect(predicate({things: false})).to.be.true;
-            expect(predicate({things: 0})).to.be.true;
+            match("things=ex=true", {things: false});
+            match("things=ex=true", {things: 0});
+            match("things=ex=true", {things: ""});
+            noMatch("things=ex=false", {things: false});
+            noMatch("things=ex=false", {things: 0});
+            noMatch("things=ex=false", {things: ""});
         });
 
         it('false on null or undefined', function () {
-            const expression = "things=ex=true";
-            const predicate = parser.parse(expression);
-            expect(predicate({things: null})).to.be.false;
-            expect(predicate({})).to.be.false;
+            match("things=ex=false", {things: null});
+            match("things=ex=false", {});
+            noMatch("things=ex=true", {things: null});
+            noMatch("things=ex=true", {});
         });
     });
 
+    describe('coercion', function () {
+        it('uses best guess when there is no type hint', function () {
+            match("age==34", {age: 34});
+            match("age==25.5", {age: 25.5});
+            match("enabled==true", {enabled: true});
+            match("display==visible", {display: "visible"});
+        })
+    });
 
 });
