@@ -12,14 +12,14 @@ a chunk of data.
 
 We've written an RSQL grammar for Antlr4. We compile this grammar into a lexer, parser, and base visitor. We then
 extend the base visitor with hand-written code that builds the parsed AST into a function of one argument that returns
-a boolean indicating if the data matches the expression. The grammar is still needs battle nesting and may be missing
-support for certain edge cases around escape sequences, etc.
+a boolean indicating if the data matches the expression. The grammar still needs battle testing and may be missing
+support for certain edge cases. Please see the tests for examples of what is / isn't supported and expected behavior.
 
 ### Motivation
 
 RSQL is used internally as a predicate expression language within Vodori's Pepper Cloud product suite. We're creating
-a browser compatible version so that we can provide dynamic behavior on the browser but without asking the people doing
-configuration to learn a new expression language.
+a browser compatible version so that we can extend dynamic configurable behavior to the browser but without asking the 
+people writing configuration to learn a new expression language.
 
 ### License
 
