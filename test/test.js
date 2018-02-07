@@ -69,11 +69,11 @@ describe('Parsing', function () {
             match("et=='phone home'", {et: ["phone home"]});
             match("et=='phone home'", {et: ["phone home", "the extra-terrestrial"]});
             noMatch("et=='phone home'", {et: []});
-            noMatch("et=='phone home'", {et: nil});
+            noMatch("et=='phone home'", {et: null});
             noMatch("et=='phone home'", {et: ["the extra-terrestrial"]});
             noMatch("et=='phone home'", {marvinTheMartian: "phone home"});
             match("et!='phone home'", {et: []});
-            match("et!='phone home'", {et: nil});
+            match("et!='phone home'", {et: null});
             match("et!='phone home'", {et: ["the extra-terrestrial"]});
             match("et!='phone home'", {et: ["the extra-terrestrial", "elliot"]});
             match("et!='phone home'", {alienVsPredator: "phone home"});

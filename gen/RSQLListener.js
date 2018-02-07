@@ -74,6 +74,15 @@ RSQLListener.prototype.exitField = function(ctx) {
 };
 
 
+// Enter a parse tree produced by RSQLParser#quoted_statement.
+RSQLListener.prototype.enterQuoted_statement = function(ctx) {
+};
+
+// Exit a parse tree produced by RSQLParser#quoted_statement.
+RSQLListener.prototype.exitQuoted_statement = function(ctx) {
+};
+
+
 // Enter a parse tree produced by RSQLParser#comparison.
 RSQLListener.prototype.enterComparison = function(ctx) {
 };

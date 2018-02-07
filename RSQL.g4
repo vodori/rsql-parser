@@ -17,6 +17,14 @@ GTE: '=ge=';
 LTE: '=le=';
 EX: '=ex=';
 RE: '=re=';
+SUB: '=q=';
+COMMA: ',';
+OR_OPERATOR: COMMA;
+AND_OPERATOR: ';';
+SINGLE_QUOTE: '\'';
+DOUBLE_QUOTE:  '"';
+L_PAREN: '(';
+R_PAREN: ')';
 
 TYPE_HINT
     : ':string'
@@ -26,33 +34,24 @@ TYPE_HINT
 
 fragment STOP: '.';
 fragment DIGIT : [0-9];
-fragment SINGLE_QUOTE: '\'';
-fragment DOUBLE_QUOTE:  '"';
 fragment BOOLEAN_LITERAL: TRUE | FALSE;
-fragment STRING_ESCAPE_SEQ
-    : '\\' .
-    ;
-fragment QUOTED_SINGLE_QUOTE : ( STRING_ESCAPE_SEQ | ~[\\\r\n'] )*;
-fragment QUOTED_DOUBLE_QUOTE : ( STRING_ESCAPE_SEQ | ~[\\\r\n"] )*;
+fragment STRING_ESCAPE_SEQ : '\\' .;
 
 NUMERIC_LITERAL
     : DIGIT+ ( STOP DIGIT* )? ( [-+]? DIGIT+ )?
     | STOP DIGIT+ ( [-+]? DIGIT+ )?
     ;
 
-UNQUOTED_NUMBER : NUMERIC_LITERAL;
-SINGLE_QUOTED_NUMERIC : SINGLE_QUOTE NUMERIC_LITERAL SINGLE_QUOTE;
-DOUBLE_QUOTED_NUMERIC : DOUBLE_QUOTE NUMERIC_LITERAL DOUBLE_QUOTE;
-SINGLE_QUOTED_STRING : SINGLE_QUOTE QUOTED_SINGLE_QUOTE? SINGLE_QUOTE;
-DOUBLE_QUOTED_STRING : DOUBLE_QUOTE QUOTED_DOUBLE_QUOTE? DOUBLE_QUOTE;
+SINGLE_QUOTED_STRING : SINGLE_QUOTE ( STRING_ESCAPE_SEQ | ~[\\\r\n'] )*? SINGLE_QUOTE;
+DOUBLE_QUOTED_STRING : DOUBLE_QUOTE ( STRING_ESCAPE_SEQ | ~[\\\r\n"] )*? DOUBLE_QUOTE;
 
 IDENTIFIER: [a-zA-Z] [a-zA-Z0-9]*;
 
 boolean_value
     : TRUE
     | FALSE
-    | '\'' (TRUE | FALSE) '\''
-    | '"' (TRUE | FALSE) '"'
+    | SINGLE_QUOTE (TRUE | FALSE) SINGLE_QUOTE
+    | DOUBLE_QUOTE (TRUE | FALSE) DOUBLE_QUOTE
     ;
 
 string_value
@@ -63,12 +62,12 @@ string_value
 
 number_value
     : NUMERIC_LITERAL
-    | '\'' NUMERIC_LITERAL '\''
-    | '"' NUMERIC_LITERAL '"'
+    | SINGLE_QUOTE NUMERIC_LITERAL SINGLE_QUOTE
+    | DOUBLE_QUOTE NUMERIC_LITERAL DOUBLE_QUOTE
     ;
 
 multi_value
-    : '(' single_value ( ',' single_value )* ')'
+    : L_PAREN single_value ( COMMA single_value )* R_PAREN
     | single_value
     ;
 
@@ -79,8 +78,8 @@ single_value
     ;
 
 statement
-    : left=statement op=( ';' | ',' ) right=statement EOF
-    | node=comparison EOF
+    : node=comparison
+    | left=statement op=( AND_OPERATOR | OR_OPERATOR ) right=statement
     ;
 
 field
@@ -88,7 +87,15 @@ field
     | key=IDENTIFIER
     ;
 
+quoted_statement
+    : SINGLE_QUOTE statement SINGLE_QUOTE
+    | DOUBLE_QUOTE statement DOUBLE_QUOTE
+    ;
+
 comparison
-    : target=field op=( EQ | NE | GT | GTE | LT | LTE | EX | RE ) single=single_value
+    : target=field op=( EQ | NE | GT | GTE | LT | LTE  ) single=single_value
     | target=field op=( IN | NIN ) multi=multi_value
+    | target=field op=EX bool=boolean_value
+    | target=field op=RE regex=string_value
+    | target=field op=SUB sub=quoted_statement
     ;

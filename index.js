@@ -103,7 +103,7 @@ PredicateParser.prototype.parse = function (s) {
         } else if (ctx.bool) {
             coerced = this.visitBoolean_value(ctx.bool);
         } else if (ctx.regex) {
-            coerced = this.visitString_value(ctx.regex);
+            coerced = new RegExp(this.visitString_value(ctx.regex));
         }
         return x => {
             const value = pullPath(x, key.key);
