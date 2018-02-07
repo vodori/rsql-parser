@@ -23,28 +23,28 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003",
     "\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0005\nk",
     "\n\n\u0003\n\u0002\u0003\f\u000b\u0002\u0004\u0006\b\n\f\u000e\u0010",
-    "\u0012\u0002\u0007\u0003\u0002\u0003\u0004\u0003\u0002\u0019\u001b\u0003",
-    "\u0002\u0011\u0012\u0004\u0002\u0005\u0006\t\f\u0003\u0002\u0007\b\u0002",
+    "\u0012\u0002\u0007\u0003\u0002\u0003\u0004\u0003\u0002\u0018\u001b\u0003",
+    "\u0002\u0010\u0011\u0004\u0002\u0005\u0006\t\f\u0003\u0002\u0007\b\u0002",
     "s\u0002\u001c\u0003\u0002\u0002\u0002\u0004\u001e\u0003\u0002\u0002",
     "\u0002\u0006\'\u0003\u0002\u0002\u0002\b5\u0003\u0002\u0002\u0002\n",
     ":\u0003\u0002\u0002\u0002\f<\u0003\u0002\u0002\u0002\u000eJ\u0003\u0002",
     "\u0002\u0002\u0010T\u0003\u0002\u0002\u0002\u0012j\u0003\u0002\u0002",
     "\u0002\u0014\u001d\u0007\u0003\u0002\u0002\u0015\u001d\u0007\u0004\u0002",
-    "\u0002\u0016\u0017\u0007\u0013\u0002\u0002\u0017\u0018\t\u0002\u0002",
-    "\u0002\u0018\u001d\u0007\u0013\u0002\u0002\u0019\u001a\u0007\u0014\u0002",
-    "\u0002\u001a\u001b\t\u0002\u0002\u0002\u001b\u001d\u0007\u0014\u0002",
+    "\u0002\u0016\u0017\u0007\u0012\u0002\u0002\u0017\u0018\t\u0002\u0002",
+    "\u0002\u0018\u001d\u0007\u0012\u0002\u0002\u0019\u001a\u0007\u0013\u0002",
+    "\u0002\u001a\u001b\t\u0002\u0002\u0002\u001b\u001d\u0007\u0013\u0002",
     "\u0002\u001c\u0014\u0003\u0002\u0002\u0002\u001c\u0015\u0003\u0002\u0002",
     "\u0002\u001c\u0016\u0003\u0002\u0002\u0002\u001c\u0019\u0003\u0002\u0002",
     "\u0002\u001d\u0003\u0003\u0002\u0002\u0002\u001e\u001f\t\u0003\u0002",
-    "\u0002\u001f\u0005\u0003\u0002\u0002\u0002 (\u0007\u0018\u0002\u0002",
-    "!\"\u0007\u0013\u0002\u0002\"#\u0007\u0018\u0002\u0002#(\u0007\u0013",
-    "\u0002\u0002$%\u0007\u0014\u0002\u0002%&\u0007\u0018\u0002\u0002&(\u0007",
-    "\u0014\u0002\u0002\' \u0003\u0002\u0002\u0002\'!\u0003\u0002\u0002\u0002",
-    "\'$\u0003\u0002\u0002\u0002(\u0007\u0003\u0002\u0002\u0002)*\u0007\u0015",
+    "\u0002\u001f\u0005\u0003\u0002\u0002\u0002 (\u0007\u0017\u0002\u0002",
+    "!\"\u0007\u0012\u0002\u0002\"#\u0007\u0017\u0002\u0002#(\u0007\u0012",
+    "\u0002\u0002$%\u0007\u0013\u0002\u0002%&\u0007\u0017\u0002\u0002&(\u0007",
+    "\u0013\u0002\u0002\' \u0003\u0002\u0002\u0002\'!\u0003\u0002\u0002\u0002",
+    "\'$\u0003\u0002\u0002\u0002(\u0007\u0003\u0002\u0002\u0002)*\u0007\u0014",
     "\u0002\u0002*/\u0005\n\u0006\u0002+,\u0007\u0010\u0002\u0002,.\u0005",
     "\n\u0006\u0002-+\u0003\u0002\u0002\u0002.1\u0003\u0002\u0002\u0002/",
     "-\u0003\u0002\u0002\u0002/0\u0003\u0002\u0002\u000202\u0003\u0002\u0002",
-    "\u00021/\u0003\u0002\u0002\u000223\u0007\u0016\u0002\u000236\u0003\u0002",
+    "\u00021/\u0003\u0002\u0002\u000223\u0007\u0015\u0002\u000236\u0003\u0002",
     "\u0002\u000246\u0005\n\u0006\u00025)\u0003\u0002\u0002\u000254\u0003",
     "\u0002\u0002\u00026\t\u0003\u0002\u0002\u00027;\u0005\u0002\u0002\u0002",
     "8;\u0005\u0006\u0004\u00029;\u0005\u0004\u0003\u0002:7\u0003\u0002\u0002",
@@ -53,12 +53,12 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0002\u0002\u0002?@\f\u0003\u0002\u0002@A\t\u0004\u0002\u0002AC\u0005",
     "\f\u0007\u0004B?\u0003\u0002\u0002\u0002CF\u0003\u0002\u0002\u0002D",
     "B\u0003\u0002\u0002\u0002DE\u0003\u0002\u0002\u0002E\r\u0003\u0002\u0002",
-    "\u0002FD\u0003\u0002\u0002\u0002GH\u0007\u001b\u0002\u0002HK\u0007\u0017",
-    "\u0002\u0002IK\u0007\u001b\u0002\u0002JG\u0003\u0002\u0002\u0002JI\u0003",
-    "\u0002\u0002\u0002K\u000f\u0003\u0002\u0002\u0002LM\u0007\u0013\u0002",
-    "\u0002MN\u0005\f\u0007\u0002NO\u0007\u0013\u0002\u0002OU\u0003\u0002",
-    "\u0002\u0002PQ\u0007\u0014\u0002\u0002QR\u0005\f\u0007\u0002RS\u0007",
-    "\u0014\u0002\u0002SU\u0003\u0002\u0002\u0002TL\u0003\u0002\u0002\u0002",
+    "\u0002FD\u0003\u0002\u0002\u0002GH\u0007\u001a\u0002\u0002HK\u0007\u0016",
+    "\u0002\u0002IK\u0007\u001a\u0002\u0002JG\u0003\u0002\u0002\u0002JI\u0003",
+    "\u0002\u0002\u0002K\u000f\u0003\u0002\u0002\u0002LM\u0007\u0012\u0002",
+    "\u0002MN\u0005\f\u0007\u0002NO\u0007\u0012\u0002\u0002OU\u0003\u0002",
+    "\u0002\u0002PQ\u0007\u0013\u0002\u0002QR\u0005\f\u0007\u0002RS\u0007",
+    "\u0013\u0002\u0002SU\u0003\u0002\u0002\u0002TL\u0003\u0002\u0002\u0002",
     "TP\u0003\u0002\u0002\u0002U\u0011\u0003\u0002\u0002\u0002VW\u0005\u000e",
     "\b\u0002WX\t\u0005\u0002\u0002XY\u0005\n\u0006\u0002Yk\u0003\u0002\u0002",
     "\u0002Z[\u0005\u000e\b\u0002[\\\t\u0006\u0002\u0002\\]\u0005\b\u0005",
@@ -80,14 +80,14 @@ var sharedContextCache = new antlr4.PredictionContextCache();
 
 var literalNames = [ null, "'true'", "'false'", "'=='", "'!='", "'=in='", 
                      "'=out='", "'=gt='", "'=lt='", "'=ge='", "'=le='", 
-                     "'=ex='", "'=re='", "'=q='", "','", null, "';'", "'''", 
-                     "'\"'", "'('", "')'" ];
+                     "'=ex='", "'=re='", "'=q='", "','", "';'", "'''", "'\"'", 
+                     "'('", "')'" ];
 
 var symbolicNames = [ null, "TRUE", "FALSE", "EQ", "NE", "IN", "NIN", "GT", 
-                      "LT", "GTE", "LTE", "EX", "RE", "SUB", "COMMA", "OR_OPERATOR", 
+                      "LT", "GTE", "LTE", "EX", "RE", "SUB", "OR_OPERATOR", 
                       "AND_OPERATOR", "SINGLE_QUOTE", "DOUBLE_QUOTE", "L_PAREN", 
                       "R_PAREN", "TYPE_HINT", "NUMERIC_LITERAL", "SINGLE_QUOTED_STRING", 
-                      "DOUBLE_QUOTED_STRING", "IDENTIFIER" ];
+                      "DOUBLE_QUOTED_STRING", "IDENTIFIER", "ANYTHING_ELSE" ];
 
 var ruleNames =  [ "boolean_value", "string_value", "number_value", "multi_value", 
                    "single_value", "statement", "field", "quoted_statement", 
@@ -125,18 +125,18 @@ RSQLParser.LTE = 10;
 RSQLParser.EX = 11;
 RSQLParser.RE = 12;
 RSQLParser.SUB = 13;
-RSQLParser.COMMA = 14;
-RSQLParser.OR_OPERATOR = 15;
-RSQLParser.AND_OPERATOR = 16;
-RSQLParser.SINGLE_QUOTE = 17;
-RSQLParser.DOUBLE_QUOTE = 18;
-RSQLParser.L_PAREN = 19;
-RSQLParser.R_PAREN = 20;
-RSQLParser.TYPE_HINT = 21;
-RSQLParser.NUMERIC_LITERAL = 22;
-RSQLParser.SINGLE_QUOTED_STRING = 23;
-RSQLParser.DOUBLE_QUOTED_STRING = 24;
-RSQLParser.IDENTIFIER = 25;
+RSQLParser.OR_OPERATOR = 14;
+RSQLParser.AND_OPERATOR = 15;
+RSQLParser.SINGLE_QUOTE = 16;
+RSQLParser.DOUBLE_QUOTE = 17;
+RSQLParser.L_PAREN = 18;
+RSQLParser.R_PAREN = 19;
+RSQLParser.TYPE_HINT = 20;
+RSQLParser.NUMERIC_LITERAL = 21;
+RSQLParser.SINGLE_QUOTED_STRING = 22;
+RSQLParser.DOUBLE_QUOTED_STRING = 23;
+RSQLParser.IDENTIFIER = 24;
+RSQLParser.ANYTHING_ELSE = 25;
 
 RSQLParser.RULE_boolean_value = 0;
 RSQLParser.RULE_string_value = 1;
@@ -317,6 +317,10 @@ String_valueContext.prototype.DOUBLE_QUOTED_STRING = function() {
     return this.getToken(RSQLParser.DOUBLE_QUOTED_STRING, 0);
 };
 
+String_valueContext.prototype.ANYTHING_ELSE = function() {
+    return this.getToken(RSQLParser.ANYTHING_ELSE, 0);
+};
+
 String_valueContext.prototype.enterRule = function(listener) {
     if(listener instanceof RSQLListener ) {
         listener.enterString_value(this);
@@ -351,7 +355,7 @@ RSQLParser.prototype.string_value = function() {
         this.enterOuterAlt(localctx, 1);
         this.state = 28;
         _la = this._input.LA(1);
-        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << RSQLParser.SINGLE_QUOTED_STRING) | (1 << RSQLParser.DOUBLE_QUOTED_STRING) | (1 << RSQLParser.IDENTIFIER))) !== 0))) {
+        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << RSQLParser.SINGLE_QUOTED_STRING) | (1 << RSQLParser.DOUBLE_QUOTED_STRING) | (1 << RSQLParser.IDENTIFIER) | (1 << RSQLParser.ANYTHING_ELSE))) !== 0))) {
         this._errHandler.recoverInline(this);
         }
         else {
@@ -524,18 +528,6 @@ Multi_valueContext.prototype.R_PAREN = function() {
     return this.getToken(RSQLParser.R_PAREN, 0);
 };
 
-Multi_valueContext.prototype.COMMA = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(RSQLParser.COMMA);
-    } else {
-        return this.getToken(RSQLParser.COMMA, i);
-    }
-};
-
-
 Multi_valueContext.prototype.enterRule = function(listener) {
     if(listener instanceof RSQLListener ) {
         listener.enterMulti_value(this);
@@ -579,9 +571,9 @@ RSQLParser.prototype.multi_value = function() {
             this.state = 45;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            while(_la===RSQLParser.COMMA) {
+            while(_la===RSQLParser.OR_OPERATOR) {
                 this.state = 41;
-                this.match(RSQLParser.COMMA);
+                this.match(RSQLParser.OR_OPERATOR);
                 this.state = 42;
                 this.single_value();
                 this.state = 47;
@@ -599,6 +591,7 @@ RSQLParser.prototype.multi_value = function() {
         case RSQLParser.SINGLE_QUOTED_STRING:
         case RSQLParser.DOUBLE_QUOTED_STRING:
         case RSQLParser.IDENTIFIER:
+        case RSQLParser.ANYTHING_ELSE:
             this.enterOuterAlt(localctx, 2);
             this.state = 50;
             this.single_value();

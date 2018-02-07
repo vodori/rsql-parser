@@ -18,8 +18,7 @@ LTE: '=le=';
 EX: '=ex=';
 RE: '=re=';
 SUB: '=q=';
-COMMA: ',';
-OR_OPERATOR: COMMA;
+OR_OPERATOR: ',';
 AND_OPERATOR: ';';
 SINGLE_QUOTE: '\'';
 DOUBLE_QUOTE:  '"';
@@ -46,6 +45,7 @@ SINGLE_QUOTED_STRING : SINGLE_QUOTE ( STRING_ESCAPE_SEQ | ~[\\\r\n'] )*? SINGLE_
 DOUBLE_QUOTED_STRING : DOUBLE_QUOTE ( STRING_ESCAPE_SEQ | ~[\\\r\n"] )*? DOUBLE_QUOTE;
 
 IDENTIFIER: [a-zA-Z] [a-zA-Z0-9]*;
+ANYTHING_ELSE: ~[\\\r\n"']+?;
 
 boolean_value
     : TRUE
@@ -58,6 +58,7 @@ string_value
     : IDENTIFIER
     | SINGLE_QUOTED_STRING
     | DOUBLE_QUOTED_STRING
+    | ANYTHING_ELSE
     ;
 
 number_value
@@ -67,7 +68,7 @@ number_value
     ;
 
 multi_value
-    : L_PAREN single_value ( COMMA single_value )* R_PAREN
+    : L_PAREN single_value ( ',' single_value )* R_PAREN
     | single_value
     ;
 
