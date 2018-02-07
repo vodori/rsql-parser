@@ -33,7 +33,6 @@ TYPE_HINT
 
 fragment STOP: '.';
 fragment DIGIT : [0-9];
-fragment BOOLEAN_LITERAL: TRUE | FALSE;
 fragment STRING_ESCAPE_SEQ : '\\' .;
 
 NUMERIC_LITERAL
@@ -79,8 +78,9 @@ single_value
     ;
 
 statement
-    : node=comparison
-    | left=statement op=( AND_OPERATOR | OR_OPERATOR ) right=statement
+    : left=statement op=( AND_OPERATOR | OR_OPERATOR ) right=statement
+    | L_PAREN wrapped=statement R_PAREN
+    | node=comparison
     ;
 
 field
