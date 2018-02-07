@@ -17,7 +17,6 @@ GTE: '=ge=';
 LTE: '=le=';
 EX: '=ex=';
 RE: '=re=';
-SUB: '=q=';
 OR_OPERATOR: ',';
 AND_OPERATOR: ';';
 SINGLE_QUOTE: '\'';
@@ -67,7 +66,7 @@ number_value
     ;
 
 multi_value
-    : L_PAREN single_value ( ',' single_value )* R_PAREN
+    : L_PAREN single_value ( OR_OPERATOR single_value )* R_PAREN
     | single_value
     ;
 
@@ -88,15 +87,9 @@ field
     | key=IDENTIFIER
     ;
 
-quoted_statement
-    : SINGLE_QUOTE statement SINGLE_QUOTE
-    | DOUBLE_QUOTE statement DOUBLE_QUOTE
-    ;
-
 comparison
     : target=field op=( EQ | NE | GT | GTE | LT | LTE  ) single=single_value
     | target=field op=( IN | NIN ) multi=multi_value
     | target=field op=EX bool=boolean_value
     | target=field op=RE regex=string_value
-    | target=field op=SUB sub=quoted_statement
     ;

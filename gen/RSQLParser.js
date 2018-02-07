@@ -7,72 +7,64 @@ var RSQLVisitor = require('./RSQLVisitor').RSQLVisitor;
 var grammarFileName = "RSQL.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u001br\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u0003\u001ab\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
     "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
-    "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0003\u0002\u0003\u0002\u0003\u0002\u0003",
-    "\u0002\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0002\u0005\u0002\u001d",
-    "\n\u0002\u0003\u0003\u0003\u0003\u0003\u0004\u0003\u0004\u0003\u0004",
-    "\u0003\u0004\u0003\u0004\u0003\u0004\u0003\u0004\u0005\u0004(\n\u0004",
-    "\u0003\u0005\u0003\u0005\u0003\u0005\u0003\u0005\u0007\u0005.\n\u0005",
-    "\f\u0005\u000e\u00051\u000b\u0005\u0003\u0005\u0003\u0005\u0003\u0005",
-    "\u0005\u00056\n\u0005\u0003\u0006\u0003\u0006\u0003\u0006\u0005\u0006",
-    ";\n\u0006\u0003\u0007\u0003\u0007\u0003\u0007\u0003\u0007\u0003\u0007",
-    "\u0003\u0007\u0005\u0007C\n\u0007\u0003\u0007\u0003\u0007\u0003\u0007",
-    "\u0007\u0007H\n\u0007\f\u0007\u000e\u0007K\u000b\u0007\u0003\b\u0003",
-    "\b\u0003\b\u0005\bP\n\b\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003",
-    "\t\u0003\t\u0003\t\u0005\tZ\n\t\u0003\n\u0003\n\u0003\n\u0003\n\u0003",
-    "\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003",
-    "\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0005\np\n\n\u0003",
-    "\n\u0002\u0003\f\u000b\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0002",
-    "\u0007\u0003\u0002\u0003\u0004\u0003\u0002\u0018\u001b\u0003\u0002\u0010",
-    "\u0011\u0004\u0002\u0005\u0006\t\f\u0003\u0002\u0007\b\u0002y\u0002",
-    "\u001c\u0003\u0002\u0002\u0002\u0004\u001e\u0003\u0002\u0002\u0002\u0006",
-    "\'\u0003\u0002\u0002\u0002\b5\u0003\u0002\u0002\u0002\n:\u0003\u0002",
-    "\u0002\u0002\fB\u0003\u0002\u0002\u0002\u000eO\u0003\u0002\u0002\u0002",
-    "\u0010Y\u0003\u0002\u0002\u0002\u0012o\u0003\u0002\u0002\u0002\u0014",
-    "\u001d\u0007\u0003\u0002\u0002\u0015\u001d\u0007\u0004\u0002\u0002\u0016",
-    "\u0017\u0007\u0012\u0002\u0002\u0017\u0018\t\u0002\u0002\u0002\u0018",
-    "\u001d\u0007\u0012\u0002\u0002\u0019\u001a\u0007\u0013\u0002\u0002\u001a",
-    "\u001b\t\u0002\u0002\u0002\u001b\u001d\u0007\u0013\u0002\u0002\u001c",
-    "\u0014\u0003\u0002\u0002\u0002\u001c\u0015\u0003\u0002\u0002\u0002\u001c",
-    "\u0016\u0003\u0002\u0002\u0002\u001c\u0019\u0003\u0002\u0002\u0002\u001d",
-    "\u0003\u0003\u0002\u0002\u0002\u001e\u001f\t\u0003\u0002\u0002\u001f",
-    "\u0005\u0003\u0002\u0002\u0002 (\u0007\u0017\u0002\u0002!\"\u0007\u0012",
-    "\u0002\u0002\"#\u0007\u0017\u0002\u0002#(\u0007\u0012\u0002\u0002$%",
-    "\u0007\u0013\u0002\u0002%&\u0007\u0017\u0002\u0002&(\u0007\u0013\u0002",
-    "\u0002\' \u0003\u0002\u0002\u0002\'!\u0003\u0002\u0002\u0002\'$\u0003",
-    "\u0002\u0002\u0002(\u0007\u0003\u0002\u0002\u0002)*\u0007\u0014\u0002",
-    "\u0002*/\u0005\n\u0006\u0002+,\u0007\u0010\u0002\u0002,.\u0005\n\u0006",
-    "\u0002-+\u0003\u0002\u0002\u0002.1\u0003\u0002\u0002\u0002/-\u0003\u0002",
-    "\u0002\u0002/0\u0003\u0002\u0002\u000202\u0003\u0002\u0002\u00021/\u0003",
-    "\u0002\u0002\u000223\u0007\u0015\u0002\u000236\u0003\u0002\u0002\u0002",
-    "46\u0005\n\u0006\u00025)\u0003\u0002\u0002\u000254\u0003\u0002\u0002",
-    "\u00026\t\u0003\u0002\u0002\u00027;\u0005\u0002\u0002\u00028;\u0005",
-    "\u0006\u0004\u00029;\u0005\u0004\u0003\u0002:7\u0003\u0002\u0002\u0002",
-    ":8\u0003\u0002\u0002\u0002:9\u0003\u0002\u0002\u0002;\u000b\u0003\u0002",
-    "\u0002\u0002<=\b\u0007\u0001\u0002=>\u0007\u0014\u0002\u0002>?\u0005",
-    "\f\u0007\u0002?@\u0007\u0015\u0002\u0002@C\u0003\u0002\u0002\u0002A",
-    "C\u0005\u0012\n\u0002B<\u0003\u0002\u0002\u0002BA\u0003\u0002\u0002",
-    "\u0002CI\u0003\u0002\u0002\u0002DE\f\u0005\u0002\u0002EF\t\u0004\u0002",
-    "\u0002FH\u0005\f\u0007\u0006GD\u0003\u0002\u0002\u0002HK\u0003\u0002",
-    "\u0002\u0002IG\u0003\u0002\u0002\u0002IJ\u0003\u0002\u0002\u0002J\r",
-    "\u0003\u0002\u0002\u0002KI\u0003\u0002\u0002\u0002LM\u0007\u001a\u0002",
-    "\u0002MP\u0007\u0016\u0002\u0002NP\u0007\u001a\u0002\u0002OL\u0003\u0002",
-    "\u0002\u0002ON\u0003\u0002\u0002\u0002P\u000f\u0003\u0002\u0002\u0002",
-    "QR\u0007\u0012\u0002\u0002RS\u0005\f\u0007\u0002ST\u0007\u0012\u0002",
-    "\u0002TZ\u0003\u0002\u0002\u0002UV\u0007\u0013\u0002\u0002VW\u0005\f",
-    "\u0007\u0002WX\u0007\u0013\u0002\u0002XZ\u0003\u0002\u0002\u0002YQ\u0003",
-    "\u0002\u0002\u0002YU\u0003\u0002\u0002\u0002Z\u0011\u0003\u0002\u0002",
-    "\u0002[\\\u0005\u000e\b\u0002\\]\t\u0005\u0002\u0002]^\u0005\n\u0006",
-    "\u0002^p\u0003\u0002\u0002\u0002_`\u0005\u000e\b\u0002`a\t\u0006\u0002",
-    "\u0002ab\u0005\b\u0005\u0002bp\u0003\u0002\u0002\u0002cd\u0005\u000e",
-    "\b\u0002de\u0007\r\u0002\u0002ef\u0005\u0002\u0002\u0002fp\u0003\u0002",
-    "\u0002\u0002gh\u0005\u000e\b\u0002hi\u0007\u000e\u0002\u0002ij\u0005",
-    "\u0004\u0003\u0002jp\u0003\u0002\u0002\u0002kl\u0005\u000e\b\u0002l",
-    "m\u0007\u000f\u0002\u0002mn\u0005\u0010\t\u0002np\u0003\u0002\u0002",
-    "\u0002o[\u0003\u0002\u0002\u0002o_\u0003\u0002\u0002\u0002oc\u0003\u0002",
-    "\u0002\u0002og\u0003\u0002\u0002\u0002ok\u0003\u0002\u0002\u0002p\u0013",
-    "\u0003\u0002\u0002\u0002\f\u001c\'/5:BIOYo"].join("");
+    "\b\t\b\u0004\t\t\t\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0002\u0003",
+    "\u0002\u0003\u0002\u0003\u0002\u0003\u0002\u0005\u0002\u001b\n\u0002",
+    "\u0003\u0003\u0003\u0003\u0003\u0004\u0003\u0004\u0003\u0004\u0003\u0004",
+    "\u0003\u0004\u0003\u0004\u0003\u0004\u0005\u0004&\n\u0004\u0003\u0005",
+    "\u0003\u0005\u0003\u0005\u0003\u0005\u0007\u0005,\n\u0005\f\u0005\u000e",
+    "\u0005/\u000b\u0005\u0003\u0005\u0003\u0005\u0003\u0005\u0005\u0005",
+    "4\n\u0005\u0003\u0006\u0003\u0006\u0003\u0006\u0005\u00069\n\u0006\u0003",
+    "\u0007\u0003\u0007\u0003\u0007\u0003\u0007\u0003\u0007\u0003\u0007\u0005",
+    "\u0007A\n\u0007\u0003\u0007\u0003\u0007\u0003\u0007\u0007\u0007F\n\u0007",
+    "\f\u0007\u000e\u0007I\u000b\u0007\u0003\b\u0003\b\u0003\b\u0005\bN\n",
+    "\b\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003",
+    "\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0003\t\u0005\t`",
+    "\n\t\u0003\t\u0002\u0003\f\n\u0002\u0004\u0006\b\n\f\u000e\u0010\u0002",
+    "\u0007\u0003\u0002\u0003\u0004\u0003\u0002\u0017\u001a\u0003\u0002\u000f",
+    "\u0010\u0004\u0002\u0005\u0006\t\f\u0003\u0002\u0007\b\u0002h\u0002",
+    "\u001a\u0003\u0002\u0002\u0002\u0004\u001c\u0003\u0002\u0002\u0002\u0006",
+    "%\u0003\u0002\u0002\u0002\b3\u0003\u0002\u0002\u0002\n8\u0003\u0002",
+    "\u0002\u0002\f@\u0003\u0002\u0002\u0002\u000eM\u0003\u0002\u0002\u0002",
+    "\u0010_\u0003\u0002\u0002\u0002\u0012\u001b\u0007\u0003\u0002\u0002",
+    "\u0013\u001b\u0007\u0004\u0002\u0002\u0014\u0015\u0007\u0011\u0002\u0002",
+    "\u0015\u0016\t\u0002\u0002\u0002\u0016\u001b\u0007\u0011\u0002\u0002",
+    "\u0017\u0018\u0007\u0012\u0002\u0002\u0018\u0019\t\u0002\u0002\u0002",
+    "\u0019\u001b\u0007\u0012\u0002\u0002\u001a\u0012\u0003\u0002\u0002\u0002",
+    "\u001a\u0013\u0003\u0002\u0002\u0002\u001a\u0014\u0003\u0002\u0002\u0002",
+    "\u001a\u0017\u0003\u0002\u0002\u0002\u001b\u0003\u0003\u0002\u0002\u0002",
+    "\u001c\u001d\t\u0003\u0002\u0002\u001d\u0005\u0003\u0002\u0002\u0002",
+    "\u001e&\u0007\u0016\u0002\u0002\u001f \u0007\u0011\u0002\u0002 !\u0007",
+    "\u0016\u0002\u0002!&\u0007\u0011\u0002\u0002\"#\u0007\u0012\u0002\u0002",
+    "#$\u0007\u0016\u0002\u0002$&\u0007\u0012\u0002\u0002%\u001e\u0003\u0002",
+    "\u0002\u0002%\u001f\u0003\u0002\u0002\u0002%\"\u0003\u0002\u0002\u0002",
+    "&\u0007\u0003\u0002\u0002\u0002\'(\u0007\u0013\u0002\u0002(-\u0005\n",
+    "\u0006\u0002)*\u0007\u000f\u0002\u0002*,\u0005\n\u0006\u0002+)\u0003",
+    "\u0002\u0002\u0002,/\u0003\u0002\u0002\u0002-+\u0003\u0002\u0002\u0002",
+    "-.\u0003\u0002\u0002\u0002.0\u0003\u0002\u0002\u0002/-\u0003\u0002\u0002",
+    "\u000201\u0007\u0014\u0002\u000214\u0003\u0002\u0002\u000224\u0005\n",
+    "\u0006\u00023\'\u0003\u0002\u0002\u000232\u0003\u0002\u0002\u00024\t",
+    "\u0003\u0002\u0002\u000259\u0005\u0002\u0002\u000269\u0005\u0006\u0004",
+    "\u000279\u0005\u0004\u0003\u000285\u0003\u0002\u0002\u000286\u0003\u0002",
+    "\u0002\u000287\u0003\u0002\u0002\u00029\u000b\u0003\u0002\u0002\u0002",
+    ":;\b\u0007\u0001\u0002;<\u0007\u0013\u0002\u0002<=\u0005\f\u0007\u0002",
+    "=>\u0007\u0014\u0002\u0002>A\u0003\u0002\u0002\u0002?A\u0005\u0010\t",
+    "\u0002@:\u0003\u0002\u0002\u0002@?\u0003\u0002\u0002\u0002AG\u0003\u0002",
+    "\u0002\u0002BC\f\u0005\u0002\u0002CD\t\u0004\u0002\u0002DF\u0005\f\u0007",
+    "\u0006EB\u0003\u0002\u0002\u0002FI\u0003\u0002\u0002\u0002GE\u0003\u0002",
+    "\u0002\u0002GH\u0003\u0002\u0002\u0002H\r\u0003\u0002\u0002\u0002IG",
+    "\u0003\u0002\u0002\u0002JK\u0007\u0019\u0002\u0002KN\u0007\u0015\u0002",
+    "\u0002LN\u0007\u0019\u0002\u0002MJ\u0003\u0002\u0002\u0002ML\u0003\u0002",
+    "\u0002\u0002N\u000f\u0003\u0002\u0002\u0002OP\u0005\u000e\b\u0002PQ",
+    "\t\u0005\u0002\u0002QR\u0005\n\u0006\u0002R`\u0003\u0002\u0002\u0002",
+    "ST\u0005\u000e\b\u0002TU\t\u0006\u0002\u0002UV\u0005\b\u0005\u0002V",
+    "`\u0003\u0002\u0002\u0002WX\u0005\u000e\b\u0002XY\u0007\r\u0002\u0002",
+    "YZ\u0005\u0002\u0002\u0002Z`\u0003\u0002\u0002\u0002[\\\u0005\u000e",
+    "\b\u0002\\]\u0007\u000e\u0002\u0002]^\u0005\u0004\u0003\u0002^`\u0003",
+    "\u0002\u0002\u0002_O\u0003\u0002\u0002\u0002_S\u0003\u0002\u0002\u0002",
+    "_W\u0003\u0002\u0002\u0002_[\u0003\u0002\u0002\u0002`\u0011\u0003\u0002",
+    "\u0002\u0002\u000b\u001a%-38@GM_"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -83,18 +75,17 @@ var sharedContextCache = new antlr4.PredictionContextCache();
 
 var literalNames = [ null, "'true'", "'false'", "'=='", "'!='", "'=in='", 
                      "'=out='", "'=gt='", "'=lt='", "'=ge='", "'=le='", 
-                     "'=ex='", "'=re='", "'=q='", "','", "';'", "'''", "'\"'", 
-                     "'('", "')'" ];
+                     "'=ex='", "'=re='", "','", "';'", "'''", "'\"'", "'('", 
+                     "')'" ];
 
 var symbolicNames = [ null, "TRUE", "FALSE", "EQ", "NE", "IN", "NIN", "GT", 
-                      "LT", "GTE", "LTE", "EX", "RE", "SUB", "OR_OPERATOR", 
-                      "AND_OPERATOR", "SINGLE_QUOTE", "DOUBLE_QUOTE", "L_PAREN", 
-                      "R_PAREN", "TYPE_HINT", "NUMERIC_LITERAL", "SINGLE_QUOTED_STRING", 
+                      "LT", "GTE", "LTE", "EX", "RE", "OR_OPERATOR", "AND_OPERATOR", 
+                      "SINGLE_QUOTE", "DOUBLE_QUOTE", "L_PAREN", "R_PAREN", 
+                      "TYPE_HINT", "NUMERIC_LITERAL", "SINGLE_QUOTED_STRING", 
                       "DOUBLE_QUOTED_STRING", "IDENTIFIER", "ANYTHING_ELSE" ];
 
 var ruleNames =  [ "boolean_value", "string_value", "number_value", "multi_value", 
-                   "single_value", "statement", "field", "quoted_statement", 
-                   "comparison" ];
+                   "single_value", "statement", "field", "comparison" ];
 
 function RSQLParser (input) {
 	antlr4.Parser.call(this, input);
@@ -127,19 +118,18 @@ RSQLParser.GTE = 9;
 RSQLParser.LTE = 10;
 RSQLParser.EX = 11;
 RSQLParser.RE = 12;
-RSQLParser.SUB = 13;
-RSQLParser.OR_OPERATOR = 14;
-RSQLParser.AND_OPERATOR = 15;
-RSQLParser.SINGLE_QUOTE = 16;
-RSQLParser.DOUBLE_QUOTE = 17;
-RSQLParser.L_PAREN = 18;
-RSQLParser.R_PAREN = 19;
-RSQLParser.TYPE_HINT = 20;
-RSQLParser.NUMERIC_LITERAL = 21;
-RSQLParser.SINGLE_QUOTED_STRING = 22;
-RSQLParser.DOUBLE_QUOTED_STRING = 23;
-RSQLParser.IDENTIFIER = 24;
-RSQLParser.ANYTHING_ELSE = 25;
+RSQLParser.OR_OPERATOR = 13;
+RSQLParser.AND_OPERATOR = 14;
+RSQLParser.SINGLE_QUOTE = 15;
+RSQLParser.DOUBLE_QUOTE = 16;
+RSQLParser.L_PAREN = 17;
+RSQLParser.R_PAREN = 18;
+RSQLParser.TYPE_HINT = 19;
+RSQLParser.NUMERIC_LITERAL = 20;
+RSQLParser.SINGLE_QUOTED_STRING = 21;
+RSQLParser.DOUBLE_QUOTED_STRING = 22;
+RSQLParser.IDENTIFIER = 23;
+RSQLParser.ANYTHING_ELSE = 24;
 
 RSQLParser.RULE_boolean_value = 0;
 RSQLParser.RULE_string_value = 1;
@@ -148,8 +138,7 @@ RSQLParser.RULE_multi_value = 3;
 RSQLParser.RULE_single_value = 4;
 RSQLParser.RULE_statement = 5;
 RSQLParser.RULE_field = 6;
-RSQLParser.RULE_quoted_statement = 7;
-RSQLParser.RULE_comparison = 8;
+RSQLParser.RULE_comparison = 7;
 
 function Boolean_valueContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -230,24 +219,24 @@ RSQLParser.prototype.boolean_value = function() {
     this.enterRule(localctx, 0, RSQLParser.RULE_boolean_value);
     var _la = 0; // Token type
     try {
-        this.state = 26;
+        this.state = 24;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case RSQLParser.TRUE:
             this.enterOuterAlt(localctx, 1);
-            this.state = 18;
+            this.state = 16;
             this.match(RSQLParser.TRUE);
             break;
         case RSQLParser.FALSE:
             this.enterOuterAlt(localctx, 2);
-            this.state = 19;
+            this.state = 17;
             this.match(RSQLParser.FALSE);
             break;
         case RSQLParser.SINGLE_QUOTE:
             this.enterOuterAlt(localctx, 3);
-            this.state = 20;
+            this.state = 18;
             this.match(RSQLParser.SINGLE_QUOTE);
-            this.state = 21;
+            this.state = 19;
             _la = this._input.LA(1);
             if(!(_la===RSQLParser.TRUE || _la===RSQLParser.FALSE)) {
             this._errHandler.recoverInline(this);
@@ -256,14 +245,14 @@ RSQLParser.prototype.boolean_value = function() {
             	this._errHandler.reportMatch(this);
                 this.consume();
             }
-            this.state = 22;
+            this.state = 20;
             this.match(RSQLParser.SINGLE_QUOTE);
             break;
         case RSQLParser.DOUBLE_QUOTE:
             this.enterOuterAlt(localctx, 4);
-            this.state = 23;
+            this.state = 21;
             this.match(RSQLParser.DOUBLE_QUOTE);
-            this.state = 24;
+            this.state = 22;
             _la = this._input.LA(1);
             if(!(_la===RSQLParser.TRUE || _la===RSQLParser.FALSE)) {
             this._errHandler.recoverInline(this);
@@ -272,7 +261,7 @@ RSQLParser.prototype.boolean_value = function() {
             	this._errHandler.reportMatch(this);
                 this.consume();
             }
-            this.state = 25;
+            this.state = 23;
             this.match(RSQLParser.DOUBLE_QUOTE);
             break;
         default:
@@ -356,7 +345,7 @@ RSQLParser.prototype.string_value = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 28;
+        this.state = 26;
         _la = this._input.LA(1);
         if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << RSQLParser.SINGLE_QUOTED_STRING) | (1 << RSQLParser.DOUBLE_QUOTED_STRING) | (1 << RSQLParser.IDENTIFIER) | (1 << RSQLParser.ANYTHING_ELSE))) !== 0))) {
         this._errHandler.recoverInline(this);
@@ -453,30 +442,30 @@ RSQLParser.prototype.number_value = function() {
     var localctx = new Number_valueContext(this, this._ctx, this.state);
     this.enterRule(localctx, 4, RSQLParser.RULE_number_value);
     try {
-        this.state = 37;
+        this.state = 35;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case RSQLParser.NUMERIC_LITERAL:
             this.enterOuterAlt(localctx, 1);
-            this.state = 30;
+            this.state = 28;
             this.match(RSQLParser.NUMERIC_LITERAL);
             break;
         case RSQLParser.SINGLE_QUOTE:
             this.enterOuterAlt(localctx, 2);
-            this.state = 31;
+            this.state = 29;
             this.match(RSQLParser.SINGLE_QUOTE);
-            this.state = 32;
+            this.state = 30;
             this.match(RSQLParser.NUMERIC_LITERAL);
-            this.state = 33;
+            this.state = 31;
             this.match(RSQLParser.SINGLE_QUOTE);
             break;
         case RSQLParser.DOUBLE_QUOTE:
             this.enterOuterAlt(localctx, 3);
-            this.state = 34;
+            this.state = 32;
             this.match(RSQLParser.DOUBLE_QUOTE);
-            this.state = 35;
+            this.state = 33;
             this.match(RSQLParser.NUMERIC_LITERAL);
-            this.state = 36;
+            this.state = 34;
             this.match(RSQLParser.DOUBLE_QUOTE);
             break;
         default:
@@ -531,6 +520,18 @@ Multi_valueContext.prototype.R_PAREN = function() {
     return this.getToken(RSQLParser.R_PAREN, 0);
 };
 
+Multi_valueContext.prototype.OR_OPERATOR = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(RSQLParser.OR_OPERATOR);
+    } else {
+        return this.getToken(RSQLParser.OR_OPERATOR, i);
+    }
+};
+
+
 Multi_valueContext.prototype.enterRule = function(listener) {
     if(listener instanceof RSQLListener ) {
         listener.enterMulti_value(this);
@@ -562,28 +563,28 @@ RSQLParser.prototype.multi_value = function() {
     this.enterRule(localctx, 6, RSQLParser.RULE_multi_value);
     var _la = 0; // Token type
     try {
-        this.state = 51;
+        this.state = 49;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case RSQLParser.L_PAREN:
             this.enterOuterAlt(localctx, 1);
-            this.state = 39;
+            this.state = 37;
             this.match(RSQLParser.L_PAREN);
-            this.state = 40;
+            this.state = 38;
             this.single_value();
-            this.state = 45;
+            this.state = 43;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
             while(_la===RSQLParser.OR_OPERATOR) {
-                this.state = 41;
+                this.state = 39;
                 this.match(RSQLParser.OR_OPERATOR);
-                this.state = 42;
+                this.state = 40;
                 this.single_value();
-                this.state = 47;
+                this.state = 45;
                 this._errHandler.sync(this);
                 _la = this._input.LA(1);
             }
-            this.state = 48;
+            this.state = 46;
             this.match(RSQLParser.R_PAREN);
             break;
         case RSQLParser.TRUE:
@@ -596,7 +597,7 @@ RSQLParser.prototype.multi_value = function() {
         case RSQLParser.IDENTIFIER:
         case RSQLParser.ANYTHING_ELSE:
             this.enterOuterAlt(localctx, 2);
-            this.state = 50;
+            this.state = 48;
             this.single_value();
             break;
         default:
@@ -674,25 +675,25 @@ RSQLParser.prototype.single_value = function() {
     var localctx = new Single_valueContext(this, this._ctx, this.state);
     this.enterRule(localctx, 8, RSQLParser.RULE_single_value);
     try {
-        this.state = 56;
+        this.state = 54;
         this._errHandler.sync(this);
         var la_ = this._interp.adaptivePredict(this._input,4,this._ctx);
         switch(la_) {
         case 1:
             this.enterOuterAlt(localctx, 1);
-            this.state = 53;
+            this.state = 51;
             this.boolean_value();
             break;
 
         case 2:
             this.enterOuterAlt(localctx, 2);
-            this.state = 54;
+            this.state = 52;
             this.number_value();
             break;
 
         case 3:
             this.enterOuterAlt(localctx, 3);
-            this.state = 55;
+            this.state = 53;
             this.string_value();
             break;
 
@@ -798,26 +799,26 @@ RSQLParser.prototype.statement = function(_p) {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 64;
+        this.state = 62;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case RSQLParser.L_PAREN:
-            this.state = 59;
+            this.state = 57;
             this.match(RSQLParser.L_PAREN);
-            this.state = 60;
+            this.state = 58;
             localctx.wrapped = this.statement(0);
-            this.state = 61;
+            this.state = 59;
             this.match(RSQLParser.R_PAREN);
             break;
         case RSQLParser.IDENTIFIER:
-            this.state = 63;
+            this.state = 61;
             localctx.node = this.comparison();
             break;
         default:
             throw new antlr4.error.NoViableAltException(this);
         }
         this._ctx.stop = this._input.LT(-1);
-        this.state = 71;
+        this.state = 69;
         this._errHandler.sync(this);
         var _alt = this._interp.adaptivePredict(this._input,6,this._ctx)
         while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
@@ -829,11 +830,11 @@ RSQLParser.prototype.statement = function(_p) {
                 localctx = new StatementContext(this, _parentctx, _parentState);
                 localctx.left = _prevctx;
                 this.pushNewRecursionContext(localctx, _startState, RSQLParser.RULE_statement);
-                this.state = 66;
+                this.state = 64;
                 if (!( this.precpred(this._ctx, 3))) {
                     throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 3)");
                 }
-                this.state = 67;
+                this.state = 65;
                 localctx.op = this._input.LT(1);
                 _la = this._input.LA(1);
                 if(!(_la===RSQLParser.OR_OPERATOR || _la===RSQLParser.AND_OPERATOR)) {
@@ -843,10 +844,10 @@ RSQLParser.prototype.statement = function(_p) {
                 	this._errHandler.reportMatch(this);
                     this.consume();
                 }
-                this.state = 68;
+                this.state = 66;
                 localctx.right = this.statement(4); 
             }
-            this.state = 73;
+            this.state = 71;
             this._errHandler.sync(this);
             _alt = this._interp.adaptivePredict(this._input,6,this._ctx);
         }
@@ -921,136 +922,24 @@ RSQLParser.prototype.field = function() {
     var localctx = new FieldContext(this, this._ctx, this.state);
     this.enterRule(localctx, 12, RSQLParser.RULE_field);
     try {
-        this.state = 77;
+        this.state = 75;
         this._errHandler.sync(this);
         var la_ = this._interp.adaptivePredict(this._input,7,this._ctx);
         switch(la_) {
         case 1:
             this.enterOuterAlt(localctx, 1);
-            this.state = 74;
+            this.state = 72;
             localctx.key = this.match(RSQLParser.IDENTIFIER);
-            this.state = 75;
+            this.state = 73;
             localctx.hint = this.match(RSQLParser.TYPE_HINT);
             break;
 
         case 2:
             this.enterOuterAlt(localctx, 2);
-            this.state = 76;
+            this.state = 74;
             localctx.key = this.match(RSQLParser.IDENTIFIER);
             break;
 
-        }
-    } catch (re) {
-    	if(re instanceof antlr4.error.RecognitionException) {
-	        localctx.exception = re;
-	        this._errHandler.reportError(this, re);
-	        this._errHandler.recover(this, re);
-	    } else {
-	    	throw re;
-	    }
-    } finally {
-        this.exitRule();
-    }
-    return localctx;
-};
-
-function Quoted_statementContext(parser, parent, invokingState) {
-	if(parent===undefined) {
-	    parent = null;
-	}
-	if(invokingState===undefined || invokingState===null) {
-		invokingState = -1;
-	}
-	antlr4.ParserRuleContext.call(this, parent, invokingState);
-    this.parser = parser;
-    this.ruleIndex = RSQLParser.RULE_quoted_statement;
-    return this;
-}
-
-Quoted_statementContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
-Quoted_statementContext.prototype.constructor = Quoted_statementContext;
-
-Quoted_statementContext.prototype.SINGLE_QUOTE = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(RSQLParser.SINGLE_QUOTE);
-    } else {
-        return this.getToken(RSQLParser.SINGLE_QUOTE, i);
-    }
-};
-
-
-Quoted_statementContext.prototype.statement = function() {
-    return this.getTypedRuleContext(StatementContext,0);
-};
-
-Quoted_statementContext.prototype.DOUBLE_QUOTE = function(i) {
-	if(i===undefined) {
-		i = null;
-	}
-    if(i===null) {
-        return this.getTokens(RSQLParser.DOUBLE_QUOTE);
-    } else {
-        return this.getToken(RSQLParser.DOUBLE_QUOTE, i);
-    }
-};
-
-
-Quoted_statementContext.prototype.enterRule = function(listener) {
-    if(listener instanceof RSQLListener ) {
-        listener.enterQuoted_statement(this);
-	}
-};
-
-Quoted_statementContext.prototype.exitRule = function(listener) {
-    if(listener instanceof RSQLListener ) {
-        listener.exitQuoted_statement(this);
-	}
-};
-
-Quoted_statementContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof RSQLVisitor ) {
-        return visitor.visitQuoted_statement(this);
-    } else {
-        return visitor.visitChildren(this);
-    }
-};
-
-
-
-
-RSQLParser.Quoted_statementContext = Quoted_statementContext;
-
-RSQLParser.prototype.quoted_statement = function() {
-
-    var localctx = new Quoted_statementContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 14, RSQLParser.RULE_quoted_statement);
-    try {
-        this.state = 87;
-        this._errHandler.sync(this);
-        switch(this._input.LA(1)) {
-        case RSQLParser.SINGLE_QUOTE:
-            this.enterOuterAlt(localctx, 1);
-            this.state = 79;
-            this.match(RSQLParser.SINGLE_QUOTE);
-            this.state = 80;
-            this.statement(0);
-            this.state = 81;
-            this.match(RSQLParser.SINGLE_QUOTE);
-            break;
-        case RSQLParser.DOUBLE_QUOTE:
-            this.enterOuterAlt(localctx, 2);
-            this.state = 83;
-            this.match(RSQLParser.DOUBLE_QUOTE);
-            this.state = 84;
-            this.statement(0);
-            this.state = 85;
-            this.match(RSQLParser.DOUBLE_QUOTE);
-            break;
-        default:
-            throw new antlr4.error.NoViableAltException(this);
         }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1082,7 +971,6 @@ function ComparisonContext(parser, parent, invokingState) {
     this.multi = null; // Multi_valueContext
     this.bool = null; // Boolean_valueContext
     this.regex = null; // String_valueContext
-    this.sub = null; // Quoted_statementContext
     return this;
 }
 
@@ -1149,14 +1037,6 @@ ComparisonContext.prototype.string_value = function() {
     return this.getTypedRuleContext(String_valueContext,0);
 };
 
-ComparisonContext.prototype.SUB = function() {
-    return this.getToken(RSQLParser.SUB, 0);
-};
-
-ComparisonContext.prototype.quoted_statement = function() {
-    return this.getTypedRuleContext(Quoted_statementContext,0);
-};
-
 ComparisonContext.prototype.enterRule = function(listener) {
     if(listener instanceof RSQLListener ) {
         listener.enterComparison(this);
@@ -1185,18 +1065,18 @@ RSQLParser.ComparisonContext = ComparisonContext;
 RSQLParser.prototype.comparison = function() {
 
     var localctx = new ComparisonContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 16, RSQLParser.RULE_comparison);
+    this.enterRule(localctx, 14, RSQLParser.RULE_comparison);
     var _la = 0; // Token type
     try {
-        this.state = 109;
+        this.state = 93;
         this._errHandler.sync(this);
-        var la_ = this._interp.adaptivePredict(this._input,9,this._ctx);
+        var la_ = this._interp.adaptivePredict(this._input,8,this._ctx);
         switch(la_) {
         case 1:
             this.enterOuterAlt(localctx, 1);
-            this.state = 89;
+            this.state = 77;
             localctx.target = this.field();
-            this.state = 90;
+            this.state = 78;
             localctx.op = this._input.LT(1);
             _la = this._input.LA(1);
             if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << RSQLParser.EQ) | (1 << RSQLParser.NE) | (1 << RSQLParser.GT) | (1 << RSQLParser.LT) | (1 << RSQLParser.GTE) | (1 << RSQLParser.LTE))) !== 0))) {
@@ -1206,15 +1086,15 @@ RSQLParser.prototype.comparison = function() {
             	this._errHandler.reportMatch(this);
                 this.consume();
             }
-            this.state = 91;
+            this.state = 79;
             localctx.single = this.single_value();
             break;
 
         case 2:
             this.enterOuterAlt(localctx, 2);
-            this.state = 93;
+            this.state = 81;
             localctx.target = this.field();
-            this.state = 94;
+            this.state = 82;
             localctx.op = this._input.LT(1);
             _la = this._input.LA(1);
             if(!(_la===RSQLParser.IN || _la===RSQLParser.NIN)) {
@@ -1224,38 +1104,28 @@ RSQLParser.prototype.comparison = function() {
             	this._errHandler.reportMatch(this);
                 this.consume();
             }
-            this.state = 95;
+            this.state = 83;
             localctx.multi = this.multi_value();
             break;
 
         case 3:
             this.enterOuterAlt(localctx, 3);
-            this.state = 97;
+            this.state = 85;
             localctx.target = this.field();
-            this.state = 98;
+            this.state = 86;
             localctx.op = this.match(RSQLParser.EX);
-            this.state = 99;
+            this.state = 87;
             localctx.bool = this.boolean_value();
             break;
 
         case 4:
             this.enterOuterAlt(localctx, 4);
-            this.state = 101;
+            this.state = 89;
             localctx.target = this.field();
-            this.state = 102;
+            this.state = 90;
             localctx.op = this.match(RSQLParser.RE);
-            this.state = 103;
+            this.state = 91;
             localctx.regex = this.string_value();
-            break;
-
-        case 5:
-            this.enterOuterAlt(localctx, 5);
-            this.state = 105;
-            localctx.target = this.field();
-            this.state = 106;
-            localctx.op = this.match(RSQLParser.SUB);
-            this.state = 107;
-            localctx.sub = this.quoted_statement();
             break;
 
         }

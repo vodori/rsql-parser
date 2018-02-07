@@ -22,19 +22,42 @@ const pullPath = function (obj, path) {
     return pull(obj, (path || "").split(".").filter(segment => !!segment));
 };
 
-function trim (s, c) {
+function trim(s, c) {
     if (c === "]") c = "\\]";
     if (c === "\\") c = "\\\\";
     return s.replace(new RegExp("^[" + c + "]+|[" + c + "]+$", "g"), "");
 }
 
-const trimQuotes = function(val) {
-    if(val.startsWith('"') && val.endsWith('"')) {
+const trimQuotes = function (val) {
+    if (val.startsWith('"') && val.endsWith('"')) {
         return trim(val, '"');
     } else if (val.startsWith("'") && val.endsWith("'")) {
         return trim(val, "'");
     } else {
         return val;
+    }
+};
+
+const coerceString = function (s) {
+    return trimQuotes(s);
+};
+
+const coerceBoolean = function (s) {
+    const value = trimQuotes(s);
+    if (/true/.test(value)) {
+        return true;
+    } else if (/false/.test(value)) {
+        return false;
+    }
+};
+
+
+const coerceNumber = function (s) {
+    const value = trimQuotes(s);
+    if (/\./.test(value)) {
+        return parseFloat(value);
+    } else {
+        return parseInt(value);
     }
 };
 
@@ -95,16 +118,34 @@ PredicateParser.prototype.parse = function (s) {
         const key = this.visitField(ctx.target);
         let coerced;
         if (ctx.single) {
-            coerced = this.visitSingle_value(ctx.single)[0];
-        } else if (ctx.sub) {
-            coerced = this.visitStatement(ctx.sub);
+            if (key.hint) {
+                // if a type hint was provided, dispatch on that instead of the default rules that implement the best guess.
+                switch (key.hint) {
+                    case ":string":
+                        coerced = this.visitString_value(ctx.single);
+                        break;
+                    case ":boolean":
+                        coerced = this.visitBoolean_value(ctx.single);
+                        break;
+                    case ":number":
+                        coerced = this.visitNumber_value(ctx.single);
+                        break;
+                    default:
+                        throw Error("Unrecognized type hint.");
+                }
+            } else {
+                coerced = this.visitSingle_value(ctx.single)[0];
+            }
         } else if (ctx.multi) {
-            coerced = this.visitMulti_value(ctx.multi);
+            // as we recurse, pass the target along.
+            ctx.multi.target = ctx.target;
+            coerced = this.visitMulti_value(ctx.multi)[0];
         } else if (ctx.bool) {
             coerced = this.visitBoolean_value(ctx.bool);
         } else if (ctx.regex) {
             coerced = new RegExp(this.visitString_value(ctx.regex));
         }
+
         return x => {
             const value = pullPath(x, key.key);
 
@@ -133,8 +174,6 @@ PredicateParser.prototype.parse = function (s) {
                     }
                 case Lexer.RSQLLexer.RE:
                     return value !== null && value !== undefined && coerced.test(value.toString());
-                case Lexer.RSQLLexer.SUB:
-                    return false;
                 default:
                     throw new Error("Unknown operator.");
             }
@@ -142,27 +181,16 @@ PredicateParser.prototype.parse = function (s) {
     };
 
 
-    Visits.prototype.visitString_value = function(ctx) {
-        return trimQuotes(ctx.getText());
+    Visits.prototype.visitString_value = function (ctx) {
+        return coerceString(ctx.getText());
     };
 
-    Visits.prototype.visitNumber_value = function(ctx) {
-        const asText = ctx.getText();
-        const trimmed = trimQuotes(asText);
-        if(/\./.test(trimmed)) {
-            return parseFloat(trimmed);
-        } else {
-            return parseInt(trimmed);
-        }
+    Visits.prototype.visitNumber_value = function (ctx) {
+        return coerceNumber(ctx.getText())
     };
 
     Visits.prototype.visitBoolean_value = function (ctx) {
-        const asText = ctx.getText();
-        if(/true/.test(asText)) {
-            return true;
-        } else if(/false/.test(asText)) {
-            return false;
-        }
+        return coerceBoolean(ctx.getText());
     };
 
     Visits.prototype.visitField = function (ctx) {

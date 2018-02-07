@@ -57,7 +57,6 @@ describe('Parsing', function () {
             match("enabled:string==true", {enabled: "true"});
             match("status:string==rejected", {status: "rejected"});
             match("time:string=ge=2017-11-23T00:00:00.000Z", {time: "2017-11-27T00:00:00.000Z"});
-            match("time:date=ge=2017-11-23T00:00:00.000Z", {time: Date.now()});
         });
     });
 
@@ -95,17 +94,6 @@ describe('Parsing', function () {
 
             match("name=le=paul", {name: "paul"});
             noMatch("name=le=paul", {name: "raul"});
-        });
-    });
-
-    describe('subquery operator', function() {
-        it('parses as expected', function() {
-            match("friends=q='firstName==Paul;lastName==Beepbop'",
-                    {friends: [{firstName: "Paul", lastName: "Beepbop"}]});
-
-            noMatch("friends=q='firstName==Paul;lastName==Beepbop'",
-                    {friends: [{firstName: "Paul", lastName: "NotBeeBop"},
-                               {firstName: "Not Paul", lastName: "Beepbop"}]});
         });
     });
 

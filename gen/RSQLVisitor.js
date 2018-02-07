@@ -54,12 +54,6 @@ RSQLVisitor.prototype.visitField = function(ctx) {
 };
 
 
-// Visit a parse tree produced by RSQLParser#quoted_statement.
-RSQLVisitor.prototype.visitQuoted_statement = function(ctx) {
-  return this.visitChildren(ctx);
-};
-
-
 // Visit a parse tree produced by RSQLParser#comparison.
 RSQLVisitor.prototype.visitComparison = function(ctx) {
   return this.visitChildren(ctx);
