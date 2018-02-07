@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "./regenerate.sh",
+    "distribute": "rm -rf dist && mkdir dist && browserify --standalone Parser -t babelify index.js | uglifyjs > dist/parser.min.js",
     "test": "mocha"
   },
   "repository": {
@@ -28,8 +29,16 @@
   "dependencies": {
     "antlr4": "4.7.1"
   },
+  "babel": {
+    "presets": ["es2015"]
+  },
   "devDependencies": {
-    "mocha": "5.0.0",
-    "chai": "4.1.2"
+    "babel-core": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babelify": "8.0.0",
+    "browserify": "16.0.0",
+    "chai": "4.1.2",
+    "minifyify": "7.3.5",
+    "mocha": "5.0.0"
   }
 }
