@@ -88,7 +88,7 @@ field
     ;
 
 comparison
-    : target=field op=( EQ | NE | GT | GTE | LT | LTE  ) single=single_value
+    : target=field op=( EQ | NE | GT | GTE | LT | LTE ) single=single_value
     | target=field op=( IN | NIN ) multi=multi_value
     | target=field op=EX bool=boolean_value
     | target=field op=RE regex=string_value

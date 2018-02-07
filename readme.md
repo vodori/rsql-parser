@@ -8,6 +8,15 @@ A javascript parser and visitor for the predicate expression language RSQL. Usef
 simple string expressions into a function that resolves to either true or false when provided 
 a chunk of data. 
 
+### Usage
+
+```javascript 1.6
+const parser = new Parser.PredicateParser();
+const predicate = parser.parse("firstName==Paul;age==25");
+const matches = predicate({firstName: "Paul", lastName: 23});
+assertFalse(matches);
+```
+
 ### How it works
 
 We've written an RSQL grammar for Antlr4. We compile this grammar into a lexer, parser, and base visitor. We then
