@@ -49,7 +49,96 @@ describe('Parsing', function () {
             match("age==25.5", {age: 25.5});
             match("enabled==true", {enabled: true});
             match("display==visible", {display: "visible"});
-        })
+        });
+
+        it('gives type hints precedence over best guess', function() {
+            match("age:string==34", {age: "34"});
+            match("age:string==25.5", {age: "25.5"});
+            match("enabled:string==true", {enabled: "true"});
+            match("status:string==rejected", {status: "rejected"});
+            match("time:string=ge=2017-11-23T00:00:00.000Z", {time: "2017-11-27T00:00:00.000Z"});
+            match("time:date=ge=2017-11-23T00:00:00.000Z", {time: Date.now()});
+        });
     });
 
+    describe('equality', function() {
+        it('parses as expected', function() {
+            match("enabled==true", {enabled: true});
+            match("enabled!=true", {enabled: false});
+            noMatch("enabled!=true", {enabled: true});
+            match("et=='phone home'", {et: ["phone home"]});
+            match("et=='phone home'", {et: ["phone home", "the extra-terrestrial"]});
+            noMatch("et=='phone home'", {et: []});
+            noMatch("et=='phone home'", {et: nil});
+            noMatch("et=='phone home'", {et: ["the extra-terrestrial"]});
+            noMatch("et=='phone home'", {marvinTheMartian: "phone home"});
+            match("et!='phone home'", {et: []});
+            match("et!='phone home'", {et: nil});
+            match("et!='phone home'", {et: ["the extra-terrestrial"]});
+            match("et!='phone home'", {et: ["the extra-terrestrial", "elliot"]});
+            match("et!='phone home'", {alienVsPredator: "phone home"});
+            noMatch("et!='phone home'", {et: ["phone home"]});
+            noMatch("et!='phone home'", {et: ["phone home", "elliot"]});
+        });
+    });
+
+    describe('relational operators', function() {
+        it('parses as expected', function() {
+            match("name=gt=paul", {name: "pbul"});
+            noMatch("name=gt=paul", {name: "paul"});
+
+            match("name=ge=paul", {name: "paul"});
+            noMatch("name=ge=paul", {name: "oaul"});
+
+            match("name=lt=paul", {name: "alfred"});
+            noMatch("name=lt=paul", {name: "pbul"});
+
+            match("name=le=paul", {name: "paul"});
+            noMatch("name=le=paul", {name: "raul"});
+        });
+    });
+
+    describe('subquery operator', function() {
+        it('parses as expected', function() {
+            match("friends=q='firstName==Paul;lastName==Beepbop'",
+                    {friends: [{firstName: "Paul", lastName: "Beepbop"}]});
+
+            noMatch("friends=q='firstName==Paul;lastName==Beepbop'",
+                    {friends: [{firstName: "Paul", lastName: "NotBeeBop"},
+                               {firstName: "Not Paul", lastName: "Beepbop"}]});
+        });
+    });
+
+    describe('regexp operator', function() {
+        it('parses as expected', function() {
+            match("friends=re=paul.*", {friends: "paulypocket"});
+            noMatch("friends=re=paul.*", {friends: "bert"});
+        });
+    });
+
+    describe('logical or', function() {
+        it('combines as expected', function() {
+            match("firstName==Paul,firstName==John", {firstName: "Paul"});
+            match("firstName==Paul,firstName==John", {firstName: "John"});
+            noMatch("firstName==Paul,firstName==John", {firstName: "Jerry"});
+        });
+    });
+
+    describe('logical and', function() {
+        it('combines as expected', function() {
+            match("firstName==Paul;lastName=ex=false", {firstName: "Paul"});
+            noMatch("firstName==Paul;firstName==John", {firstName: "Paul"});
+        });
+    });
+
+    describe('multi-operators', function() {
+        it('parse as expected', function() {
+            match("firstName=in=(Paul,John)", {firstName: "Paul"});
+            match("firstName=in=(Paul,John)", {firstName: "John"});
+            noMatch("firstName=in=(Paul,John)", {firstName: "Jerry"});
+            noMatch("firstName=out=(Paul,John)", {firstName: "Paul"});
+            noMatch("firstName=out=(Paul,John)", {firstName: "John"});
+            match("firstName=out=(Paul,John)", {firstName: "Jerry"});
+        });
+    });
 });
