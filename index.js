@@ -4,7 +4,7 @@ const Parser = require('./gen/RSQLParser');
 const Visitor = require('./gen/RSQLVisitor');
 
 const pull = function (obj, path) {
-    if (path.length) {
+    if (obj && path.length) {
         const segment = path[0];
         const value = obj[segment];
         if (path.length === 1) {

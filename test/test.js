@@ -129,4 +129,15 @@ describe('Parsing', function () {
             match("firstName=out=(Paul,John)", {firstName: "Jerry"});
         });
     });
+
+    describe('reaching into nested objects using dot delimited paths', function() {
+        it('reaches in as expected', function() {
+            match("friend.bestFriend.age:string==24", {friend: {bestFriend: {age: "24"}}});
+            noMatch("friend.bestFriend.age:string!=24", {friend: {bestFriend: {age: "24"}}});
+        });
+        it('handles existence checks safely even if there is no intermediate object along the path', function() {
+            match("friend.bestFriend.firstName=ex=false", {friend: {worstFriend: {firstName: "Jerry"}}});
+            noMatch("friend.bestFriend.firstName=ex=true", {friend: {worstFriend: {firstName: "Jerry"}}});
+        });
+    });
 });
