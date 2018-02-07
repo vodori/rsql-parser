@@ -61,6 +61,33 @@ const coerceNumber = function (s) {
     }
 };
 
+const coerceSet = function (s) {
+    if (Array.isArray(s)) {
+        return s;
+    } else if (s !== null && s !== undefined) {
+        return [s];
+    } else {
+        return [];
+    }
+};
+
+
+const intersection = function (s1, s2) {
+    const set1 = coerceSet(s1);
+    const set2 = coerceSet(s2);
+    const result = [];
+    set1.forEach(x => {
+        if (set2.includes(x)) {
+            result.push(x);
+        }
+    });
+    return result;
+};
+
+const intersect = function (s1, s2) {
+    return intersection(s1, s2).length > 0;
+};
+
 const PredicateParser = function () {
 
 };
@@ -151,9 +178,17 @@ PredicateParser.prototype.parse = function (s) {
 
             switch (ctx.op.type) {
                 case Lexer.RSQLLexer.EQ:
-                    return value === coerced;
+                    if(Array.isArray(value)) {
+                        return intersect(value, coerced);
+                    } else {
+                        return value === coerced;
+                    }
                 case Lexer.RSQLLexer.NE:
-                    return value !== coerced;
+                    if(Array.isArray(value)) {
+                        return !intersect(value, coerced);
+                    } else {
+                        return value !== coerced;
+                    }
                 case Lexer.RSQLLexer.GT:
                     return value > coerced;
                 case Lexer.RSQLLexer.GTE:
@@ -163,9 +198,9 @@ PredicateParser.prototype.parse = function (s) {
                 case Lexer.RSQLLexer.LTE:
                     return value <= coerced;
                 case Lexer.RSQLLexer.IN:
-                    return coerced.includes(value);
+                    return intersect(coerced, value);
                 case Lexer.RSQLLexer.NIN:
-                    return !coerced.includes(value);
+                    return !intersect(coerced, value);
                 case Lexer.RSQLLexer.EX:
                     if (coerced) {
                         return value !== null && value !== undefined;
@@ -180,11 +215,11 @@ PredicateParser.prototype.parse = function (s) {
         };
     };
 
-    Visits.prototype.visitSingle_value = function(ctx) {
+    Visits.prototype.visitSingle_value = function (ctx) {
         return this.visitChildren(ctx)[0];
     };
 
-    Visits.prototype.visitMulti_value = function(ctx) {
+    Visits.prototype.visitMulti_value = function (ctx) {
         return this.visit(ctx.children.filter(child => {
             // skip any of the intermediate nodes.
             return child.constructor === Parser.RSQLParser.Single_valueContext;
