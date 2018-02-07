@@ -134,12 +134,12 @@ PredicateParser.prototype.parse = function (s) {
                         throw Error("Unrecognized type hint.");
                 }
             } else {
-                coerced = this.visitSingle_value(ctx.single)[0];
+                coerced = this.visitSingle_value(ctx.single);
             }
         } else if (ctx.multi) {
             // as we recurse, pass the target along.
             ctx.multi.target = ctx.target;
-            coerced = this.visitMulti_value(ctx.multi)[0];
+            coerced = this.visitMulti_value(ctx.multi);
         } else if (ctx.bool) {
             coerced = this.visitBoolean_value(ctx.bool);
         } else if (ctx.regex) {
@@ -163,9 +163,9 @@ PredicateParser.prototype.parse = function (s) {
                 case Lexer.RSQLLexer.LTE:
                     return value <= coerced;
                 case Lexer.RSQLLexer.IN:
-                    return false;
+                    return coerced.includes(value);
                 case Lexer.RSQLLexer.NIN:
-                    return false;
+                    return !coerced.includes(value);
                 case Lexer.RSQLLexer.EX:
                     if (coerced) {
                         return value !== null && value !== undefined;
@@ -180,6 +180,16 @@ PredicateParser.prototype.parse = function (s) {
         };
     };
 
+    Visits.prototype.visitSingle_value = function(ctx) {
+        return this.visitChildren(ctx)[0];
+    };
+
+    Visits.prototype.visitMulti_value = function(ctx) {
+        return this.visit(ctx.children.filter(child => {
+            // skip any of the intermediate nodes.
+            return child.constructor === Parser.RSQLParser.Single_valueContext;
+        }));
+    };
 
     Visits.prototype.visitString_value = function (ctx) {
         return coerceString(ctx.getText());
