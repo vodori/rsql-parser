@@ -25,9 +25,7 @@ const pullPath = function (obj, path) {
 function trim (s, c) {
     if (c === "]") c = "\\]";
     if (c === "\\") c = "\\\\";
-    return s.replace(new RegExp(
-        "^[" + c + "]+|[" + c + "]+$", "g"
-    ), "");
+    return s.replace(new RegExp("^[" + c + "]+|[" + c + "]+$", "g"), "");
 }
 
 const trimQuotes = function(val) {
@@ -107,7 +105,6 @@ PredicateParser.prototype.parse = function (s) {
         } else if (ctx.regex) {
             coerced = this.visitString_value(ctx.regex);
         }
-
         return x => {
             const value = pullPath(x, key.key);
 

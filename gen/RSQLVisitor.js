@@ -12,14 +12,14 @@ function RSQLVisitor() {
 RSQLVisitor.prototype = Object.create(antlr4.tree.ParseTreeVisitor.prototype);
 RSQLVisitor.prototype.constructor = RSQLVisitor;
 
-// Visit a parse tree produced by RSQLParser#string_value.
-RSQLVisitor.prototype.visitString_value = function(ctx) {
+// Visit a parse tree produced by RSQLParser#boolean_value.
+RSQLVisitor.prototype.visitBoolean_value = function(ctx) {
   return this.visitChildren(ctx);
 };
 
 
-// Visit a parse tree produced by RSQLParser#boolean_value.
-RSQLVisitor.prototype.visitBoolean_value = function(ctx) {
+// Visit a parse tree produced by RSQLParser#string_value.
+RSQLVisitor.prototype.visitString_value = function(ctx) {
   return this.visitChildren(ctx);
 };
 
@@ -30,14 +30,14 @@ RSQLVisitor.prototype.visitNumber_value = function(ctx) {
 };
 
 
-// Visit a parse tree produced by RSQLParser#single_value.
-RSQLVisitor.prototype.visitSingle_value = function(ctx) {
+// Visit a parse tree produced by RSQLParser#multi_value.
+RSQLVisitor.prototype.visitMulti_value = function(ctx) {
   return this.visitChildren(ctx);
 };
 
 
-// Visit a parse tree produced by RSQLParser#multi_value.
-RSQLVisitor.prototype.visitMulti_value = function(ctx) {
+// Visit a parse tree produced by RSQLParser#single_value.
+RSQLVisitor.prototype.visitSingle_value = function(ctx) {
   return this.visitChildren(ctx);
 };
 
