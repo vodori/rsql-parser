@@ -2,7 +2,7 @@
   "name": "rsql-parser",
   "version": "0.0.1",
   "description": "A javascript library for parsing rsql expressions into predicates.",
-  "main": "index.js",
+  "main": "dist/parser.min.js",
   "scripts": {
     "build": "./regenerate.sh",
     "distribute": "rm -rf dist && mkdir dist && browserify --standalone Parser -t babelify index.js | uglifyjs > dist/parser.min.js",
