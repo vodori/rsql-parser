@@ -13,7 +13,7 @@ a chunk of data.
 ```javascript 1.6
 const parser = new Parser.PredicateParser();
 const predicate = parser.parse("firstName==Paul;age==25");
-const matches = predicate({firstName: "Paul", lastName: 23});
+const matches = predicate({firstName: "Paul", age: 23});
 assertFalse(matches);
 ```
 
