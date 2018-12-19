@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/vodori/rsql-parser#readme",
   "dependencies": {
-    "antlr4": "4.7.1"
+    "antlr4": "4.7.2"
   },
   "babel": {
     "presets": ["es2015"]
