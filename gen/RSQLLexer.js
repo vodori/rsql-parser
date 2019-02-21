@@ -1,6 +1,7 @@
-// Generated from RSQL.g4 by ANTLR 4.7.1
+// Generated from RSQL.g4 by ANTLR 4.7.2
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
+
 
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
@@ -46,7 +47,7 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0010\u001f\u0011!\u0012#\u0013%\u0014\'\u0015)\u0002+\u0002-\u0002",
     "/\u00161\u00173\u00185\u00197\u001a\u0003\u0002\t\u0003\u00022;\u0004",
     "\u0002--//\u0006\u0002\f\f\u000f\u000f))^^\u0006\u0002\f\f\u000f\u000f",
-    "$$^^\u0004\u0002C\\c|\u0006\u0002002;C\\c|\u0007\u0002\f\f\u000f\u000f",
+    "$$^^\u0004\u0002C\\c|\u0007\u0002/02;C\\aac|\u0007\u0002\f\f\u000f\u000f",
     "$$))^^\u0002\u00f7\u0002\u0003\u0003\u0002\u0002\u0002\u0002\u0005\u0003",
     "\u0002\u0002\u0002\u0002\u0007\u0003\u0002\u0002\u0002\u0002\t\u0003",
     "\u0002\u0002\u0002\u0002\u000b\u0003\u0002\u0002\u0002\u0002\r\u0003",

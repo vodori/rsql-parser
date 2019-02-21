@@ -1,9 +1,5 @@
 grammar RSQL;
 
-options {
-    language = JavaScript;
-}
-
 
 TRUE: 'true';
 FALSE: 'false';
@@ -42,7 +38,7 @@ NUMERIC_LITERAL
 SINGLE_QUOTED_STRING : SINGLE_QUOTE ( STRING_ESCAPE_SEQ | ~[\\\r\n'] )*? SINGLE_QUOTE;
 DOUBLE_QUOTED_STRING : DOUBLE_QUOTE ( STRING_ESCAPE_SEQ | ~[\\\r\n"] )*? DOUBLE_QUOTE;
 
-IDENTIFIER: [a-zA-Z] [a-zA-Z0-9.]*;
+IDENTIFIER: [a-zA-Z] [a-zA-Z0-9._-]*;
 ANYTHING_ELSE: ~[\\\r\n"']+?;
 
 boolean_value

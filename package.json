@@ -30,7 +30,9 @@
     "antlr4": "4.7.2"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "devDependencies": {
     "babel-core": "6.26.3",
