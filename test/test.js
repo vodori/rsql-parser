@@ -97,6 +97,13 @@ describe('Parsing', function () {
         });
     });
 
+    describe('string coercion without quotes', function() {
+        it('handles common separators without requiring quotes', function() {
+            match("name==PAUL_R", {name: ["PAUL_R"]});
+            match("name==PAULY-R", {name: ["PAULY-R"]});
+        });
+    });
+
     describe('regexp operator', function() {
         it('parses as expected', function() {
             match("friends=re=paul.*", {friends: "paulypocket"});

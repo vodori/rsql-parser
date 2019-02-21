@@ -1,10 +1,11 @@
-// Generated from RSQL.g4 by ANTLR 4.7.1
+// Generated from RSQL.g4 by ANTLR 4.7.2
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 var RSQLListener = require('./RSQLListener').RSQLListener;
 var RSQLVisitor = require('./RSQLVisitor').RSQLVisitor;
 
 var grammarFileName = "RSQL.g4";
+
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0003\u001ab\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
@@ -139,6 +140,7 @@ RSQLParser.RULE_single_value = 4;
 RSQLParser.RULE_statement = 5;
 RSQLParser.RULE_field = 6;
 RSQLParser.RULE_comparison = 7;
+
 
 function Boolean_valueContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -281,6 +283,7 @@ RSQLParser.prototype.boolean_value = function() {
     return localctx;
 };
 
+
 function String_valueContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -367,6 +370,7 @@ RSQLParser.prototype.string_value = function() {
     }
     return localctx;
 };
+
 
 function Number_valueContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -484,6 +488,7 @@ RSQLParser.prototype.number_value = function() {
     }
     return localctx;
 };
+
 
 function Multi_valueContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -617,6 +622,7 @@ RSQLParser.prototype.multi_value = function() {
     return localctx;
 };
 
+
 function Single_valueContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -711,6 +717,7 @@ RSQLParser.prototype.single_value = function() {
     }
     return localctx;
 };
+
 
 function StatementContext(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -866,6 +873,7 @@ RSQLParser.prototype.statement = function(_p) {
     return localctx;
 };
 
+
 function FieldContext(parser, parent, invokingState) {
 	if(parent===undefined) {
 	    parent = null;
@@ -954,6 +962,7 @@ RSQLParser.prototype.field = function() {
     }
     return localctx;
 };
+
 
 function ComparisonContext(parser, parent, invokingState) {
 	if(parent===undefined) {
