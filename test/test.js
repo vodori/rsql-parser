@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Parser = require('../index').PredicateParser;
+const Parser = require('..').PredicateParser;
 
 describe('Parsing', function () {
 
