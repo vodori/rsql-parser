@@ -30,6 +30,27 @@ RSQL is used internally as a predicate expression language within Vodori's Peppe
 a browser compatible version so that we can extend dynamic configurable behavior to the browser but without asking the 
 people writing configuration to learn a new expression language.
 
+### Development
+
+Use Node.js 22 LTS and install the locked dependencies with `npm ci`.
+Run `npm test` for the parser behavior suite and `npm run distribute` to rebuild
+`dist/parser.min.js`. The bundle exposes `Parser.PredicateParser` in browsers and exports the same API
+through the Node.js package entry point. Build tools require Node.js 18 or newer.
+The bundle targets modern browsers supported by the ANTLR 4.13 runtime.
+
+The ANTLR generator and runtime must both be version 4.13.0. Download
+[`antlr-4.13.0-complete.jar`](https://www.antlr.org/download/antlr-4.13.0-complete.jar),
+then regenerate the checked-in CommonJS parser with:
+
+```sh
+ANTLR_JAR=/path/to/antlr-4.13.0-complete.jar npm run build
+npm test
+npm run distribute
+```
+
+The generated lexer/parser now use ANTLR's class-based visitor API. Babel converts
+the generated modules to CommonJS; esbuild bundles the runtime's browser module.
+
 ### License
 
 This project is licensed under [MIT license](http://opensource.org/licenses/MIT).

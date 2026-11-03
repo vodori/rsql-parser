@@ -1,7 +1,7 @@
-const antlr4 = require('antlr4');
-const Lexer = require('./gen/RSQLLexer');
-const Parser = require('./gen/RSQLParser');
-const Visitor = require('./gen/RSQLVisitor');
+const antlr4 = require('antlr4').default;
+const Lexer = require('./gen/RSQLLexer').default;
+const Parser = require('./gen/RSQLParser').default;
+const Visitor = require('./gen/RSQLVisitor').default;
 
 const pull = function (obj, path) {
     if (obj && path.length) {
@@ -94,26 +94,20 @@ const PredicateParser = function () {
 
 PredicateParser.prototype.parse = function (s) {
     const characters = new antlr4.InputStream(s);
-    const lexer = new Lexer.RSQLLexer(characters);
+    const lexer = new Lexer(characters);
     const tokens = new antlr4.CommonTokenStream(lexer);
-    const parser = new Parser.RSQLParser(tokens);
+    const parser = new Parser(tokens);
 
     parser.buildParseTrees = true;
     const tree = parser.statement();
 
-    const Visits = function () {
-        Visitor.RSQLVisitor.call(this);
-        return this;
-    };
-
-    Visits.prototype = Object.create(Visitor.RSQLVisitor.prototype);
-
-    Visits.prototype.constructor = Visits;
+    // ANTLR 4.13 generates ES classes, so its visitor must be extended as a class.
+    class Visits extends Visitor {}
 
     Visits.prototype.visitStatement = function (ctx) {
         if (ctx.left && ctx.op && ctx.right) {
             switch (ctx.op.type) {
-                case Lexer.RSQLLexer.AND_OPERATOR:
+                case Lexer.AND_OPERATOR:
                     return (function () {
                         const parseLeft = this.visit(ctx.left);
                         const parseRight = this.visit(ctx.right);
@@ -121,7 +115,7 @@ PredicateParser.prototype.parse = function (s) {
                             return parseLeft(x) && parseRight(x);
                         };
                     }.bind(this))();
-                case Lexer.RSQLLexer.OR_OPERATOR:
+                case Lexer.OR_OPERATOR:
                     return (function () {
                         const parseLeft = this.visit(ctx.left);
                         const parseRight = this.visit(ctx.right);
@@ -177,37 +171,37 @@ PredicateParser.prototype.parse = function (s) {
             const value = pullPath(x, key.key);
 
             switch (ctx.op.type) {
-                case Lexer.RSQLLexer.EQ:
+                case Lexer.EQ:
                     if(Array.isArray(value)) {
                         return intersect(value, coerced);
                     } else {
                         return value === coerced;
                     }
-                case Lexer.RSQLLexer.NE:
+                case Lexer.NE:
                     if(Array.isArray(value)) {
                         return !intersect(value, coerced);
                     } else {
                         return value !== coerced;
                     }
-                case Lexer.RSQLLexer.GT:
+                case Lexer.GT:
                     return value > coerced;
-                case Lexer.RSQLLexer.GTE:
+                case Lexer.GTE:
                     return value >= coerced;
-                case Lexer.RSQLLexer.LT:
+                case Lexer.LT:
                     return value < coerced;
-                case Lexer.RSQLLexer.LTE:
+                case Lexer.LTE:
                     return value <= coerced;
-                case Lexer.RSQLLexer.IN:
+                case Lexer.IN:
                     return intersect(coerced, value);
-                case Lexer.RSQLLexer.NIN:
+                case Lexer.NIN:
                     return !intersect(coerced, value);
-                case Lexer.RSQLLexer.EX:
+                case Lexer.EX:
                     if (coerced) {
                         return value !== null && value !== undefined;
                     } else {
                         return value === null || value === undefined;
                     }
-                case Lexer.RSQLLexer.RE:
+                case Lexer.RE:
                     return value !== null && value !== undefined && coerced.test(value.toString());
                 default:
                     throw new Error("Unknown operator.");
@@ -222,7 +216,7 @@ PredicateParser.prototype.parse = function (s) {
     Visits.prototype.visitMulti_value = function (ctx) {
         return this.visit(ctx.children.filter(child => {
             // skip any of the intermediate nodes.
-            return child.constructor === Parser.RSQLParser.Single_valueContext;
+            return child.constructor === Parser.Single_valueContext;
         }));
     };
 

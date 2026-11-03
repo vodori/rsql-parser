@@ -1,87 +1,62 @@
-// Generated from RSQL.g4 by ANTLR 4.7.2
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _antlr = _interopRequireDefault(require("antlr4"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+// Generated from RSQL.g4 by ANTLR 4.13.0
 // jshint ignore: start
-var antlr4 = require('antlr4/index');
 
 // This class defines a complete listener for a parse tree produced by RSQLParser.
-function RSQLListener() {
-	antlr4.tree.ParseTreeListener.call(this);
-	return this;
+class RSQLListener extends _antlr.default.tree.ParseTreeListener {
+  // Enter a parse tree produced by RSQLParser#boolean_value.
+  enterBoolean_value(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#boolean_value.
+  exitBoolean_value(ctx) {}
+
+  // Enter a parse tree produced by RSQLParser#string_value.
+  enterString_value(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#string_value.
+  exitString_value(ctx) {}
+
+  // Enter a parse tree produced by RSQLParser#number_value.
+  enterNumber_value(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#number_value.
+  exitNumber_value(ctx) {}
+
+  // Enter a parse tree produced by RSQLParser#multi_value.
+  enterMulti_value(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#multi_value.
+  exitMulti_value(ctx) {}
+
+  // Enter a parse tree produced by RSQLParser#single_value.
+  enterSingle_value(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#single_value.
+  exitSingle_value(ctx) {}
+
+  // Enter a parse tree produced by RSQLParser#statement.
+  enterStatement(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#statement.
+  exitStatement(ctx) {}
+
+  // Enter a parse tree produced by RSQLParser#field.
+  enterField(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#field.
+  exitField(ctx) {}
+
+  // Enter a parse tree produced by RSQLParser#comparison.
+  enterComparison(ctx) {}
+
+  // Exit a parse tree produced by RSQLParser#comparison.
+  exitComparison(ctx) {}
 }
-
-RSQLListener.prototype = Object.create(antlr4.tree.ParseTreeListener.prototype);
-RSQLListener.prototype.constructor = RSQLListener;
-
-// Enter a parse tree produced by RSQLParser#boolean_value.
-RSQLListener.prototype.enterBoolean_value = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#boolean_value.
-RSQLListener.prototype.exitBoolean_value = function(ctx) {
-};
-
-
-// Enter a parse tree produced by RSQLParser#string_value.
-RSQLListener.prototype.enterString_value = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#string_value.
-RSQLListener.prototype.exitString_value = function(ctx) {
-};
-
-
-// Enter a parse tree produced by RSQLParser#number_value.
-RSQLListener.prototype.enterNumber_value = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#number_value.
-RSQLListener.prototype.exitNumber_value = function(ctx) {
-};
-
-
-// Enter a parse tree produced by RSQLParser#multi_value.
-RSQLListener.prototype.enterMulti_value = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#multi_value.
-RSQLListener.prototype.exitMulti_value = function(ctx) {
-};
-
-
-// Enter a parse tree produced by RSQLParser#single_value.
-RSQLListener.prototype.enterSingle_value = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#single_value.
-RSQLListener.prototype.exitSingle_value = function(ctx) {
-};
-
-
-// Enter a parse tree produced by RSQLParser#statement.
-RSQLListener.prototype.enterStatement = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#statement.
-RSQLListener.prototype.exitStatement = function(ctx) {
-};
-
-
-// Enter a parse tree produced by RSQLParser#field.
-RSQLListener.prototype.enterField = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#field.
-RSQLListener.prototype.exitField = function(ctx) {
-};
-
-
-// Enter a parse tree produced by RSQLParser#comparison.
-RSQLListener.prototype.enterComparison = function(ctx) {
-};
-
-// Exit a parse tree produced by RSQLParser#comparison.
-RSQLListener.prototype.exitComparison = function(ctx) {
-};
-
-
-
-exports.RSQLListener = RSQLListener;
+exports.default = RSQLListener;
